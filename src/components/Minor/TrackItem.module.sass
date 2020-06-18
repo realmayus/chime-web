@@ -1,0 +1,56 @@
+@import "../../assets/main"
+
+.wrapper
+  width: calc(100% - 80px)
+  height: 45px
+  background: $grayAccent3
+  border-radius: 6px
+  display: flex
+  align-items: center
+  padding-left: 20px
+  color: #ffffff
+  margin-bottom: 10px
+
+.handle
+  color: $grayAccent4
+  margin-right: 27px
+  cursor: grab
+
+.title
+  font-weight: 500
+  font-size: 16px
+  line-height: 27px
+  text-overflow: ellipsis //clip the text with … if too long
+  overflow: hidden //clip the text with … if too long
+  width: 270px //clip the text with … if too long
+  white-space: nowrap //clip the text with … if too long
+
+.artist
+  margin-left: auto
+  font-weight: 800
+  font-size: 13px
+  letter-spacing: 0.095em
+  text-transform: uppercase
+  text-overflow: ellipsis //clip the text with … if too long
+  overflow: hidden //clip the text with … if too long
+  max-width: 190px //clip the text with … if too long
+  white-space: nowrap //clip the text with … if too long
+
+.duration
+  font-weight: 800
+  font-size: 13px
+  letter-spacing: 0.095em
+  margin-right: 40px
+
+.dot
+  margin-left: 5px
+  margin-right: 5px
+
+.icon
+  margin-left: 14px
+  cursor: pointer
+  color: $grayAccent4
+  &:hover
+    color: #ffffff
+  &:last-child
+    margin-right: 20px

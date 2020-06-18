@@ -1,0 +1,66 @@
+@import "../../assets/main"
+
+.pillbutton
+  outline: none
+  border: none
+  font-size: 14px
+  padding: 5px 10px 5px 0
+  border-radius: 5000px
+  display: flex
+  align-items: center
+  cursor: pointer
+  margin-right: 10px
+  font-family: 'Inter', sans-serif
+  -webkit-font-smoothing: antialiased
+  position: relative
+  &:disabled
+    cursor: not-allowed
+  &.inverted
+    color: #000000
+    background-color: #ffffff
+  &:not(.inverted)
+    color: #ffffff
+    background-color: $grayAccent3
+
+
+.pillbutton:hover
+  &:not(:disabled)
+    &.inverted
+      background-color: $grayAccent6
+    background-color: $grayAccent3-4
+
+.innerDiv
+  display: flex
+  align-items: center
+
+.icon
+  width: 70px
+  margin-right: 7px
+  margin-left: 12px
+
+
+.text
+  font-weight: 800
+  font-size: 12px
+  line-height: 20px
+  letter-spacing: 0.095em
+  text-transform: uppercase
+
+.textInvisible
+  font-weight: 800
+  font-size: 12px
+  line-height: 20px
+  letter-spacing: 0.095em
+  visibility: hidden
+
+.spinner
+  position: absolute !important
+  margin: auto !important
+  left: 0
+  right: 0
+  top: 0 !important
+  bottom: 0
+
+
+.spinnerText
+  visibility: hidden

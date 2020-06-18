@@ -1,0 +1,87 @@
+@import "../../assets/main"
+
+.body
+  background-color: $grayAccent2
+  margin-left: 330px
+  width: calc(100vw - 330px - 60px)
+  height: calc(100vh - 60px)
+  position: absolute
+  padding-left: 60px
+
+
+
+.songList
+  height: calc(100vh - 250px)
+  width: calc(100vw - 390px)
+  overflow-y: auto
+
+  /* width */
+  &::-webkit-scrollbar
+    width: 8px
+
+
+  /* Track */
+  &::-webkit-scrollbar-track
+    background: $grayAccent3
+    border-radius: 1000px
+
+
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb
+    background: $grayAccent3-4
+    border-radius: 1000px
+
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover
+    background: $grayAccent4
+
+.actionContainer
+  margin-bottom: 20px
+  display: flex
+  align-items: center
+
+.spinnerWrapper
+  margin-top: 100px
+  position: absolute
+  left: 0
+  right: 0
+
+.titleWrapper
+  padding-top: 40px
+  padding-bottom: 40px
+  display: flex
+  align-items: center
+
+.title
+  font-weight: 800
+  font-size: 44px
+  line-height: 58px
+  color: #ffffff
+
+.editIcon
+  font-size: 18px
+  color: $grayAccent5
+  margin-left: 10px
+  cursor: pointer
+  &:hover
+    color: #ffffff
+
+.errorWrapper
+  position: absolute
+  margin: auto
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+  display: flex
+  align-items: center
+  color: $grayAccent4
+.errorCode
+  font-family: monospace
+
+.errorIcon
+  font-size: 20px
+  margin-right: 20px
+
+.errorText

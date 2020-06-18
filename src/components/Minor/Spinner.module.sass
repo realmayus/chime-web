@@ -1,0 +1,42 @@
+
+
+@mixin loader($size, $border_thickness, $color)
+  width: $size
+  height: $size
+  border: $border_thickness solid $color
+  border-right-color: transparent
+  border-radius: 50%
+  position: relative
+  animation: loader-rotate 1s linear infinite
+  top: 50%
+  margin: -28px auto 0
+  .loader01::after
+    content: ''
+    width: 3px
+    height: 3px
+    background: $color
+    border-radius: 50%
+    position: absolute
+    top: -1px
+    left: 33px
+
+  @keyframes loader-rotate
+    0%
+      transform: rotate(0)
+
+    100%
+      transform: rotate(360deg)
+
+
+.loaderBig
+  @include loader(30px, 5px, #ffffff)
+
+.loaderMedium
+  @include loader(20px, 4px, #ffffff)
+
+.loaderSmall
+  @include loader(10px, 3px, #ffffff)
+
+.loaderSmallDark
+  @include loader(10px, 3px, #000000)
+

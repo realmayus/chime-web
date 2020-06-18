@@ -1,0 +1,74 @@
+@import "../../assets/main"
+
+.sideBar
+  display: flex
+  flex-direction: column
+  height: 100vh
+  width: 310px
+  font-size: 22px
+  font-weight: 600
+  position: fixed
+  background-color: $grayAccent1
+  padding-top: 80px
+  padding-left: 20px
+  top: 0
+  left: 0
+  color: $yellowAccent
+
+.list
+  padding: 0
+
+
+.listItem
+  list-style: none
+  padding: 0
+  font-weight: 500
+  font-size: 18px
+  line-height: 40px
+  text-overflow: ellipsis //clip the text with … if too long
+  overflow: hidden //clip the text with … if too long
+  width: 270px //clip the text with … if too long
+  white-space: nowrap //clip the text with … if too long
+
+
+.listItemSelected
+  color: #ffffff
+  font-weight: 800
+
+.category
+  list-style: none
+  padding: 0
+  font-weight: 800
+  font-size: 14px
+  line-height: 30px
+  letter-spacing: 0.095em
+  position: relative
+  width: 100%
+  &:not(:first-child)
+    margin-top: 70px
+
+.a
+  color: unset
+  text-decoration: unset
+  &:hover
+    .listItem
+      &:not(.listItemSelected)
+        color: $yellowAccentHighlighted
+
+.addIcon
+  font-size: 18px
+
+.addIconWrapper
+  position: absolute
+  display: flex
+  align-items: center
+  align-content: center
+  right: 30px
+  top: 0
+  bottom: 0
+  margin-top: auto
+  margin-bottom: auto
+  cursor: pointer
+  &:hover
+    .addIcon
+      color: $yellowAccentHighlighted

@@ -1,0 +1,139 @@
+@import "main"
+
+
+.modal
+  position: absolute
+  left: 50%
+  top: 50%
+  transform: translate(-50%,-50%)
+  min-width: 500px
+  background-color: $grayAccent1
+  border-radius: 19px
+  outline: none
+  padding: 30px 50px
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25)
+  color: #ffffff
+
+.modalOverlay
+  position: fixed
+  top: 60px
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: rgba(0, 0, 0, .80)
+
+.search
+  line-height: 24px
+  background-color: $grayAccent2
+  outline: none
+  border-radius: 100px
+  border: 2px solid $grayAccent3
+  margin-right: 20px
+  padding-left: 15px
+  color: #ffffff
+  font-family: "Inter", sans-serif
+  font-weight: 500
+  font-size: 16px
+  width: 100%
+  &:focus
+    //border: 2px solid $grayAccent3-4
+    border: 2px solid #ffffff
+
+
+.form
+  display: flex
+  align-items: center
+  width: 100%
+
+.contentWrapper
+  display: flex
+  align-items: center
+
+.resultsOuterWrapper
+  margin-top: 50px
+  max-width: 80vw
+  max-height: 500px
+  display: flex
+  overflow-x: auto
+  overflow-y: hidden
+  /* width */
+  &::-webkit-scrollbar
+    height: 8px
+
+  /* Track */
+  &::-webkit-scrollbar-track
+    background: $grayAccent3
+    border-radius: 1000px
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb
+    background: $grayAccent3-4
+    border-radius: 1000px
+
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover
+    background: $grayAccent4
+
+.resultWrapper
+  padding: 10px
+  margin-bottom: 10px
+  cursor: pointer
+  user-select: none
+  -webkit-user-select: none
+  -moz-user-select: none
+  &:hover
+    background-color: $grayAccent3
+
+.resultThumbnail
+  object-fit: cover
+  width: 287px
+  height: 162px
+
+.resultTitle
+  text-overflow: ellipsis //clip the text with … if too long
+  overflow: hidden //clip the text with … if too long
+  width: 287px //clip the text with … if too long
+  white-space: nowrap //clip the text with … if too long
+
+.navButton
+  outline: none
+  border: none
+  background-color: rgba(0, 0, 0, 0.6)
+  font-size: 30px
+  line-height: 30px
+  padding-right: 10px
+  padding-left: 10px
+  color: #ffffff
+  cursor: pointer
+  position: absolute
+  height: 49px
+  &:last-child
+    right: 50px
+  &:first-child
+    left: 50px
+
+.spinnerWrapper
+  position: relative
+  margin-top: 60px
+
+.spinner
+  animation: spin 1s linear infinite
+  left: 50%
+  .invisible
+    visibility: hidden !important
+
+
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+.warningWrapper
+  display: flex
+  justify-content: center
+  align-items: center
+  .warningIcon
+    margin-right: 5px
