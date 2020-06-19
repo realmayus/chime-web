@@ -27,7 +27,8 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
 
 
     useEffect(() => {
-        setError("")
+        setError("");
+
     }, [location])
 
     useEffect(() => {

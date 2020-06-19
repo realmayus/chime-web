@@ -108,7 +108,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                 setCurrentlyLoading(false)
             })
         }
-    }, [props.accessToken, playlistID, props.isLoggedIn])
+    }, [location, props.accessToken, playlistID, props.isLoggedIn])
 
     useEffect(() => {
         if(props.data.hasOwnProperty("playlists")) {
@@ -177,8 +177,8 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                                 onClick={() => setShowEditModal(true)} className={styles.editIcon} icon={faPencilAlt}/></div>
                                 <div className={styles.actionContainer}>
                                     <IconPillButton icon={faPlus} text="Add" onclick={() => setShowAddModal(true)}/>
-                                    <IconPillButton icon={faClone} text="Clone" onclick={() => alert("hi")}/>
-                                    <IconPillButton icon={faShare} text="Share" onclick={() => alert("hi")}/>
+                                    <IconPillButton icon={faClone} text="Clone" onclick={() => alert("WIP")}/>
+                                    <IconPillButton icon={faShare} text="Share" onclick={() => alert("WIP")}/>
                                     {changesMade &&
                                     <IconPillButton inverted={true} icon={faCheck} text="Save Changes" onclick={saveChanges}
                                                     loading={currentlySaving}/>
