@@ -1,5 +1,5 @@
 import {
-    ADD_PLAYLIST,
+    ADD_PLAYLIST, REMOVE_PLAYLIST,
     RENAME_PLAYLIST,
     SET_ACCESS_TOKEN,
     SET_AVATAR_URL,
@@ -63,7 +63,16 @@ function loginReducer(state = initialState, action) {
 
                 }
             }
-
+        case REMOVE_PLAYLIST:
+            return {
+                ...state,
+                data: {
+                    ...state.data,
+                    playlists: [
+                        ...state.data.playlists.filter(item => item.ref !== action.ref)
+                    ]
+                }
+            }
         default:
             return state
     }

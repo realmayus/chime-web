@@ -5,6 +5,7 @@ export const SET_AVATAR_URL = 'SET_AVATAR_URL'
 export const SET_DATA = 'SET_DATA'
 export const ADD_PLAYLIST = 'ADD_PLAYLIST'
 export const RENAME_PLAYLIST = 'RENAME_PLAYLIST'
+export const REMOVE_PLAYLIST = 'REMOVE_PLAYLIST'
 
 
 export function setAccessToken(accessToken) {
@@ -33,4 +34,8 @@ export function addPlaylist(playlist) {
 
 export function renamePlaylist(ref, newName) {
     return { type: RENAME_PLAYLIST, ref, newName }
+}
+
+export function deletePlaylist(ref) {
+    return { type: REMOVE_PLAYLIST, ref }
 }

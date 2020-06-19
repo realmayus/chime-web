@@ -7,7 +7,7 @@ import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
 import {useHistory, useLocation} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {renamePlaylist} from "../../redux/actions"
+import {renamePlaylist, deletePlaylist} from "../../redux/actions"
 
 const mapStateToProps = (state) => {
     return {
@@ -56,17 +56,17 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
                     setCurrentlyLoadingRename(false)
                 } else {
                     setCurrentlyLoadingRename(false)
-                    setError(res["error"] || "Couldn't create playlist, please check log.")
+                    setError(res["error"] || "Couldn't rename playlist, please check log.")
                     console.log(res)
                 }
             }).catch(err => {
                 setCurrentlyLoadingRename(false)
-                setError(err["error"] || "Couldn't create playlist, please check log.")
+                setError(err["error"] || "Couldn't rename playlist, please check log.")
                 console.log(err)
             })
     }
 
-    const deletePlaylist = () => {
+    const deletePlaylistHandler = () => {
         setError("")
         setCurrentlyLoadingDelete(true)
         fetch(BACKEND_URL + "/deletePlaylist?token=" + props.accessToken + "&playlist=" + props.playlistID).then(res => res.json())
@@ -75,16 +75,17 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
                     setCurrentlyLoadingDelete(false)
                     props.onClose()
                     history.push("/app")
+                    props.dispatch(deletePlaylist(props.playlistID))
                 } else {
                     setCurrentlyLoadingDelete(false)
                     console.log(res)
-                    setError(res["error"] || "Couldn't create playlist, please check log.")
+                    setError(res["error"] || "Couldn't delete playlist, please check log.")
 
                 }
             }).catch(err => {
                 setCurrentlyLoadingDelete(false)
                 console.log(err)
-                setError(err["error"] || "Couldn't create playlist, please check log.")
+                setError(err["error"] || "Couldn't delete playlist, please check log.")
 
         })
     }
@@ -110,7 +111,7 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
                         <p>{error}</p>
                     </div>
                 }
-                <IconPillButton onclick={deletePlaylist} icon={faTrash} text={"Delete"} inverted={false} loading={currentlyLoadingDelete}/>
+                <IconPillButton onclick={deletePlaylistHandler} icon={faTrash} text={"Delete"} inverted={false} loading={currentlyLoadingDelete}/>
 
             </ReactModal>
         </div>
