@@ -1,7 +1,6 @@
 import React from "react"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import styles from "./IconPillButton.module.sass"
-import {faCircleNotch} from "@fortawesome/free-solid-svg-icons/faCircleNotch"
 import {SpinnerSmall} from "./Spinner"
 
 export default function IconPillButton(props) {

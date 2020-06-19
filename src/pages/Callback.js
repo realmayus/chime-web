@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import queryString from 'query-string';
 import {connect} from "react-redux";
-import {setAccessToken, setLoggedIn} from "../../redux/actions";
+import {setAccessToken, setLoggedIn} from "../redux/actions";
 import {useHistory, withRouter} from 'react-router-dom';
 
 
@@ -21,7 +21,7 @@ export default connect()(withRouter(function Callback(props) {
             console.log("Set to false")
         }
         history.push("/app");
-    }, [])
+    }, [history, props])
     return(
         <div></div>
     )

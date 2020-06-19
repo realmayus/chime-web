@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react"
+import React, {useEffect, useState} from "react"
 import ReactModal from "react-modal"
 import styles from "../../assets/modal.module.sass"
 import IconPillButton from "../Minor/IconPillButton"

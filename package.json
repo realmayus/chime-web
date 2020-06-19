@@ -25,7 +25,8 @@
     "react-redux": "^7.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
-    "redux-localstorage": "^0.4.1"
+    "redux-localstorage": "^0.4.1",
+    "react-router-dom": "^5.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,10 +48,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@types/cheerio": "^0.22.18",
-    "@types/request": "^2.48.5",
-    "react-router-dom": "^5.2.0"
   }
 }

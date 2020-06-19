@@ -2,9 +2,8 @@ import React, {Suspense, useEffect} from "react"
 import {Redirect, Route, Switch} from "react-router-dom"
 import Home from "./pages/Home"
 import {CLIENT_ID, INVITE_URL} from "./constants"
-import Callback from "./components/Callback/Callback"
+import Callback from "./pages/Callback"
 import Dashboard from "./pages/Dashboard"
-import DashboardPlaceholder from "./components/DashboardContent/DashboardPlaceholder"
 import Features from "./pages/Features";
 
 export default function Main() {

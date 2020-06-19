@@ -62,7 +62,7 @@ export default function Features() {
                         so that the community can help make it
                         better. Also, chime’s userbase has a say in
                         what is becoming a feature and what not.</p>
-                    <img src={GithubLogo} className={styles.sectionImageGithub}/>
+                    <img src={GithubLogo} className={styles.sectionImageGithub} alt="GitHub Logo"/>
                 </div>
             </div>
             <div className={styles.endSection}>

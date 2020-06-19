@@ -1,13 +1,11 @@
-import React, {Suspense, useCallback, useEffect} from "react"
+import React, {useEffect} from "react"
 import {connect} from "react-redux"
-import Sidebar from "../components/DashboardSidebar/Sidebar"
 import DashboardContentPlaylist from "../components/DashboardContent/DashboardContentPlaylist"
 import {Route, Switch, useHistory} from "react-router-dom"
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import {DndProvider} from 'react-dnd'
+import {HTML5Backend} from 'react-dnd-html5-backend'
 import {BACKEND_URL} from "../constants"
 import {setAvatarURL, setData, setUsername} from "../redux/actions"
-import Home from "./Home"
 import DashboardPlaceholder from "../components/DashboardContent/DashboardPlaceholder"
 
 const mapStateToProps = (state) => {

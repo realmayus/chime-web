@@ -6,7 +6,6 @@ import {faArrowLeft, faArrowRight, faSearch} from "@fortawesome/free-solid-svg-i
 import IconPillButton from "../Minor/IconPillButton"
 import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
-import {faCircleNotch} from "@fortawesome/free-solid-svg-icons/faCircleNotch"
 import {SpinnerMedium} from "../Minor/Spinner"
 
 const mapStateToProps = (state) => {
