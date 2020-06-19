@@ -21,6 +21,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
     let [results, setResults] = useState([])
     let [currentlyLoading, setCurrentlyLoading] = useState(false)
     let [dontClose, setDontClose] = useState(false)
+    let [showResults, setShowResults] = useState(true)
     let resultsWrapper = useRef(null)
 
     useEffect(() => {
@@ -30,6 +31,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
     }, [isOpened, props.showModal])
 
     const handleFormSubmit = e => {
+        setShowResults(false);
         e.preventDefault()
         setCurrentlyLoading(true)
         fetch(BACKEND_URL + "/getSearchResults?token=" + props.accessToken + "&query=" + encodeURIComponent(searchQuery)).then(res => res.json()).then(res => {
@@ -37,6 +39,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
             if(res.hasOwnProperty("results")) {
                 let results_ = res.results
                 setResults(results_)
+                setShowResults(true);
                 setCurrentlyLoading(false)
             } else {
                 alert("Couldn't fetch backend, please see log!")
@@ -85,7 +88,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
                     <input className={styles.search} type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}/>
                     <IconPillButton icon={faSearch} text={"Search"} inverted={true}/>
                 </form>
-                { results.length > 0 &&
+                { results.length > 0 && showResults &&
                 <div>
                     <label className={styles.checkboxContainer}> Don't close window automatically
                         <input
