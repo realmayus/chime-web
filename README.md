@@ -1,4 +1,6 @@
 # chime-web
+![Build & Deploy](https://github.com/realmayus/chime-web/workflows/Build%20&%20Deploy/badge.svg)
+
 The web app for chime, a discord music bot
 
 ## Features
