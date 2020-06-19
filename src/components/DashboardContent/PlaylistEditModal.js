@@ -5,7 +5,7 @@ import {faExclamationCircle, faPencilAlt, faTrash} from "@fortawesome/free-solid
 import IconPillButton from "../Minor/IconPillButton"
 import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
-import {useHistory} from "react-router-dom"
+import {useHistory, useLocation} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {renamePlaylist} from "../../redux/actions"
 
@@ -21,7 +21,14 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
     let [playlistName, setPlaylistName] = useState(props.name)
     let [currentlyLoadingRename, setCurrentlyLoadingRename] = useState(false)
     let [currentlyLoadingDelete, setCurrentlyLoadingDelete] = useState(false)
+    let [error, setError] = useState("")
     const history = useHistory()
+    let location = useLocation()
+
+
+    useEffect(() => {
+        setError("")
+    }, [location])
 
     useEffect(() => {
         if(props.showModal !== isOpened) {
@@ -34,6 +41,11 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
     }, [props.name])
 
     const handleRenamePlaylist = () => {
+        setError("")
+        if(playlistName.length <= 2) {
+            setError("Name has to be three characters or more")
+            return
+        }
         setCurrentlyLoadingRename(true)
         props.dispatch(renamePlaylist(props.playlistID, playlistName))
         fetch(BACKEND_URL + "/renamePlaylist?token=" + props.accessToken + "&playlist=" + props.playlistID + "&newName=" + playlistName).then(res => res.json())
@@ -42,18 +54,19 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
                     props.onClose()
                     setCurrentlyLoadingRename(false)
                 } else {
-                    alert("Couldn't complete the action, please check log.")
                     setCurrentlyLoadingRename(false)
+                    setError(res["error"] || "Couldn't create playlist, please check log.")
                     console.log(res)
                 }
             }).catch(err => {
                 setCurrentlyLoadingRename(false)
-                alert("Couldn't complete the action, please check log.")
+                setError(err["error"] || "Couldn't create playlist, please check log.")
                 console.log(err)
             })
     }
 
     const deletePlaylist = () => {
+        setError("")
         setCurrentlyLoadingDelete(true)
         fetch(BACKEND_URL + "/deletePlaylist?token=" + props.accessToken + "&playlist=" + props.playlistID).then(res => res.json())
             .then(res => {
@@ -63,14 +76,16 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
                     history.push("/app")
                 } else {
                     setCurrentlyLoadingDelete(false)
-                    alert("Couldn't complete the action, please check log.")
                     console.log(res)
+                    setError(res["error"] || "Couldn't create playlist, please check log.")
+
                 }
             }).catch(err => {
                 setCurrentlyLoadingDelete(false)
-                alert("Couldn't complete the action, please check log.")
                 console.log(err)
-            })
+                setError(err["error"] || "Couldn't create playlist, please check log.")
+
+        })
     }
 
     return(
@@ -88,9 +103,10 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
                     <IconPillButton disabled={props.name === playlistName || playlistName === ""} onclick={handleRenamePlaylist} icon={faPencilAlt} text={"Rename"} inverted={true} loading={currentlyLoadingRename}/>
                 </div>
 
-                { playlistName === "" &&
+                {error.length > 0 &&
                     <div className={styles.warningWrapper}>
-                        <FontAwesomeIcon className={styles.warningIcon} icon={faExclamationCircle} size="1x"/> <p>The playlist name is invalid.</p>
+                        <FontAwesomeIcon className={styles.warningIcon} icon={faExclamationCircle} size="1x"/>
+                        <p>{error}</p>
                     </div>
                 }
                 <IconPillButton onclick={deletePlaylist} icon={faTrash} text={"Delete"} inverted={false} loading={currentlyLoadingDelete}/>

@@ -4,9 +4,11 @@ import styles from "../../assets/modal.module.sass"
 import IconPillButton from "../Minor/IconPillButton"
 import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
-import {SpinnerMedium} from "../Minor/Spinner"
 import {addPlaylist} from "../../redux/actions"
 import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons";
+import {useLocation} from "react-router-dom";
 
 const mapStateToProps = (state) => {
     return {
@@ -18,6 +20,14 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
     let [isOpened, setOpened] = useState(false)
     let [playlistName, setPlaylistName] = useState("")
     let [currentlyLoading, setCurrentlyLoading] = useState(false)
+    let [error, setError] = useState("")
+    let location = useLocation()
+
+
+    useEffect(() => {
+        setError("")
+    }, [location])
+
 
     useEffect(() => {
         if(props.showModal !== isOpened) {
@@ -27,6 +37,13 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
 
     const handleFormSubmit = e => {
         e.preventDefault()
+
+        if(playlistName.length <= 2) {
+            setError("Name has to be three characters or more")
+            return
+        }
+
+
         setCurrentlyLoading(true)
         fetch(BACKEND_URL + "/createPlaylist?token=" + props.accessToken + "&playlist=" + encodeURIComponent(playlistName))
             .then(res => res.json())
@@ -38,12 +55,14 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
                     setCurrentlyLoading(false)
                     props.onClose()
                 } else {
-                    alert("Couldn't create playlist, please check log.")
+                    setError(res["error"] || "Couldn't create playlist, please check log.")
+                    setCurrentlyLoading(false)
                     console.log(res)
                 }
             })
             .catch(err => {
-                alert("Couldn't create playlist, please check log.")
+                setCurrentlyLoading(false)
+                setError(err["error"] || "Couldn't create playlist, please check log.")
                 console.log(err)
             })
 
@@ -61,13 +80,14 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
                 <h2>Add Playlist</h2>
                 <form className={styles.form} onSubmit={handleFormSubmit}>
                     <input className={styles.search} type="text" value={playlistName} onChange={e => setPlaylistName(e.target.value)}/>
-                    <IconPillButton icon={faPlus} text={"Create"} inverted={true}/>
+                    <IconPillButton icon={faPlus} text={"Create"} inverted={true} loading={currentlyLoading}/>
                 </form>
-                <div className={styles.spinnerWrapper} style={{visibility: currentlyLoading ? "unset" : "hidden"}}>
-                    <SpinnerMedium/>
-                </div>
-
-
+                {error.length > 0 &&
+                    <div className={styles.warningWrapper}>
+                        <FontAwesomeIcon className={styles.warningIcon} icon={faExclamationCircle} size="1x"/>
+                        <p>{error}</p>
+                    </div>
+                }
             </ReactModal>
         </div>
     )
