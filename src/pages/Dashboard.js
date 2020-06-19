@@ -27,7 +27,8 @@ export default connect(mapStateToProps)(function Dashboard(props) {
                 props.dispatch(setData(res.data))
             })
         }
-    }, [props, props.accessToken, props.isLoggedIn])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.accessToken, props.isLoggedIn])
 
     if(props.isLoggedIn) {
         return(
