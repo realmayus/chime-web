@@ -30,7 +30,7 @@ export default withRouter(connect(mapStateToProps)(function Navbar(props) {
                 </div>
                 : <div>
                     <a href={INVITE_URL} className={styles.navbarLink}>Invite</a>
-                    <a className={styles.navbarLink} href="https://google.com">Donate</a>
+                    <a className={styles.navbarLink} href="https://patreon.com/realmayus">Donate</a>
                     <Link to="/" className={styles.navbarLink}>Back</Link>
                 </div>
             }
