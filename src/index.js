@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 import './index.sass'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-import {createStore} from "redux"
+import {createStore, compose} from "redux"
+import persistState from 'redux-localstorage'
 import {Provider} from "react-redux"
 
 import {
@@ -11,9 +12,14 @@ import {
 } from "react-router-dom"
 import loginReducer from "./redux/reducers"
 
+const enhancer = compose(
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    // persistState(["accessToken"]),
+)
+
 export const store = createStore(
     loginReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    enhancer
 )
 
 

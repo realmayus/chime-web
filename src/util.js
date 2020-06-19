@@ -56,8 +56,8 @@ export function encodeTrackToBase64(track) {
     console.log(track)
     let dataBuffer = new DataBuffer()
     dataBuffer.write(2)
-    dataBuffer.writeUTF8(track.title)
-    dataBuffer.writeUTF8(track.artist)
+    dataBuffer.writeUTF8(removeNonAscii(track.title))
+    dataBuffer.writeUTF8(removeNonAscii(track.artist))
     dataBuffer.writeLong(track.duration)
     dataBuffer.writeUTF8(track.videoID)
     dataBuffer.writeBoolean(false)
@@ -73,4 +73,8 @@ export function strip(str) {
     if(str !== undefined) {
         return str.replace(/^\s+|\s+$/g, '')
     }
+}
+
+export function removeNonAscii(str) {
+    return str.replace(/[^\x00-\x7F]/g, "");
 }
