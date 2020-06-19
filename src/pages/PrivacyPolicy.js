@@ -1,8 +1,9 @@
 import React from "react"
+import styles from "./PrivacyPolicy.module.sass"
 
 export default function PrivacyPolicy() {
     return(
-        <div>
+        <div className={styles.contentWrapper}>
             <h1>Privacy Policy for chime</h1>
 
             <p>At chime, accessible from https://chime.realmayus.xyz, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by chime and how we use it.</p>

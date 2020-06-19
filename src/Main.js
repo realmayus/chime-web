@@ -5,6 +5,7 @@ import {CLIENT_ID, FRONTEND_URL, INVITE_URL} from "./constants"
 import Callback from "./pages/Callback"
 import Dashboard from "./pages/Dashboard"
 import Features from "./pages/Features";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 export default function Main() {
     useEffect(() => {
@@ -26,8 +27,13 @@ export default function Main() {
                         window.location.href = INVITE_URL
                         return null
                     }}/>
+                    <Route exact path="/privacy" component={PrivacyPolicy}/>
 
-                    <Redirect to={'https://http.cat/404'}/>
+                    <Route exact path="/404" component={() => {
+                        return <div><h1>Wow, such empty</h1><p>404. There doesn't seem to be anything here.</p></div>
+                    }}/>
+
+                    <Redirect to={'/404'}/>
                 </Switch>
             </Suspense>
         </main>

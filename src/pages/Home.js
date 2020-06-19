@@ -2,6 +2,7 @@ import React from "react"
 import styles from "./Home.module.sass"
 import {INVITE_URL, SERVER_INVITE_URL} from "../constants"
 import {useHistory} from "react-router-dom";
+import Footer from "../components/Footer/Footer";
 
 export default function Home() {
     let history = useHistory()
@@ -31,6 +32,7 @@ export default function Home() {
 
                 </div>
             </div>
+            <Footer/>
         </div>
     )
 }
