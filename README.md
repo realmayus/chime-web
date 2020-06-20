@@ -3,6 +3,8 @@
 
 The web app for chime, a discord music bot
 
+[Open production version](https://chime.realmayus.xyz)
+
 ## Features
 * Serves as a static website for chime
 * Offers important links, such as an invite link, a server invite link, patreon links etc
