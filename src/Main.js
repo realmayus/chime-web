@@ -1,7 +1,7 @@
 import React, {Suspense, useEffect} from "react"
 import {Redirect, Route, Switch} from "react-router-dom"
 import Home from "./pages/Home"
-import {CLIENT_ID, INVITE_URL} from "./constants"
+import {CLIENT_ID, INVITE_URL, SERVER_INVITE_URL} from "./constants"
 import Callback from "./pages/Callback"
 import Dashboard from "./pages/Dashboard"
 import Features from "./pages/Features";
@@ -30,6 +30,10 @@ export default function Main(props) {
                     }}/>
                     <Route exact path="/privacy" component={PrivacyPolicy}/>
                     <Route exact path="/stats" component={Stats}/>
+                    <Route exact path="/official-discord" component={() => {
+                        window.location.href = SERVER_INVITE_URL
+                        return null
+                    }}/>
 
                     <Route exact path="/404" component={() => {
                         return <div><h1>Wow, such empty</h1><p>404. There doesn't seem to be anything here.</p></div>
