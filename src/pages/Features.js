@@ -67,11 +67,11 @@ export default function Features() {
             </div>
             <div className={styles.endSection}>
                 <h1 className={styles.sectionHeadline} >So, what are you waiting for?</h1>
-                <a className={styles.link} href={INVITE_URL}>-&gt; Invite Chime</a>
+                <span>-&gt;</span><a className={styles.link} href={INVITE_URL}>Invite Chime</a>
                 <p className={styles.sectionText}>
                     If that didn’t sound convincing to you, you
                     can test chime on our official discord server</p>
-                <a className={styles.link} href={SERVER_INVITE_URL}>-&gt; Join the discord server</a>
+                <span>-&gt;</span><a className={styles.link} href={SERVER_INVITE_URL}>Join the discord server</a>
             </div>
 
         </div>
