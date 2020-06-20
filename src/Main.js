@@ -6,6 +6,7 @@ import Callback from "./pages/Callback"
 import Dashboard from "./pages/Dashboard"
 import Features from "./pages/Features";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Stats from "./pages/Stats";
 
 export default function Main(props) {
     useEffect(() => {
@@ -28,6 +29,7 @@ export default function Main(props) {
                         return null
                     }}/>
                     <Route exact path="/privacy" component={PrivacyPolicy}/>
+                    <Route exact path="/stats" component={Stats}/>
 
                     <Route exact path="/404" component={() => {
                         return <div><h1>Wow, such empty</h1><p>404. There doesn't seem to be anything here.</p></div>

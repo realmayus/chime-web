@@ -35,7 +35,6 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
         e.preventDefault()
         setCurrentlyLoading(true)
         fetch(BACKEND_URL + "/getSearchResults?token=" + props.accessToken + "&query=" + encodeURIComponent(searchQuery)).then(res => res.json()).then(res => {
-            console.log(res)
             if(res.hasOwnProperty("results")) {
                 let results_ = res.results
                 setResults(results_)
@@ -104,9 +103,9 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
                             icon={faArrowLeft}/></button>
                         <div className={styles.resultsOuterWrapper} ref={resultsWrapper}>
                             {results.map((item, i) => (
-                                <div>
+                                <div key={i} >
                                     { !(item.video.upload_date === undefined || item.video.upload_date === "") &&  // YouTube mixes don't have upload dates so we can filter them out using this check
-                                    <div className={styles.resultWrapper} key={i} onClick={() => handleSongSelect(item)}>
+                                    <div className={styles.resultWrapper} onClick={() => handleSongSelect(item)}>
                                         <img src={item.video["thumbnail_src"]} alt="thumbnail"
                                              className={styles.resultThumbnail}/>
                                         <h3 className={styles.resultTitle}>{item.video.title}</h3>

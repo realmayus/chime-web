@@ -21,7 +21,6 @@ export default connect(mapStateToProps)(function Dashboard(props) {
     useEffect(() => {
         if(props.isLoggedIn) {
             fetch(BACKEND_URL + "/getProfile?token=" + props.accessToken).then(res => res.json()).then(res => {
-                console.log(res)
                 props.dispatch(setAvatarURL(res.avatar_url))
                 props.dispatch(setUsername(res.user_name))
                 props.dispatch(setData(res.data))

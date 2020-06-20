@@ -13,8 +13,8 @@ export function SpinnerMedium() {
     )
 }
 
-export function SpinnerBig() {
+export function SpinnerBig({color="white"}) {
     return (
-        <div className={styles.loaderBig}></div>
+        <div className={(color === "white" ? styles.loaderBig : styles.loaderBigDark)}></div>
     )
 }

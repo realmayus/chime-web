@@ -13,7 +13,7 @@ export default function IconPillButton(props) {
                     <span className={styles.text + (props.inverted ? " " + styles.inverted : "") + " " + styles.spinnerText}>{props.text}</span>
                 </div>
                : <div className={styles.innerDiv}>
-                    <FontAwesomeIcon className={styles.icon + (props.inverted ? " " + styles.inverted : "")} size={"20px"} icon={props.icon}/>
+                    <FontAwesomeIcon className={styles.icon + (props.inverted ? " " + styles.inverted : "")} icon={props.icon}/>
                     <span className={styles.text + (props.inverted ? " " + styles.inverted : "")}>{props.text}</span>
                 </div>
             }        </button>

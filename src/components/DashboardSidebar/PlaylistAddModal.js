@@ -76,6 +76,7 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
                 onRequestClose={props.onClose}
                 className={styles.modal}
                 overlayClassName={styles.modalOverlay}
+                closeTimeoutMS={200}
             >
                 <h2>Add Playlist</h2>
                 <form className={styles.form} onSubmit={handleFormSubmit}>

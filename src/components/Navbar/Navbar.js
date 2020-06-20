@@ -21,6 +21,9 @@ export default withRouter(connect(mapStateToProps)(function Navbar(props) {
             { !isOnDashboard()
                 ? <div>
                     <a href={INVITE_URL} className={styles.highlighted + " " + styles.navbarLink}>Invite</a>
+                    { props.location.pathname !== "/" &&
+                    <Link to={"/"} className={styles.navbarLink}>Home</Link>  //Show link to landing page if not already on there
+                    }
                     <Link to={"/features"} className={styles.navbarLink}>Features</Link>
                     <a className={styles.navbarLink} href="https://patreon.com/realmayus">Donate</a>
                     {props.isLoggedIn

@@ -53,7 +53,6 @@ export function hmsToSecondsOnly(str) {
     time-consuming.
  */
 export function encodeTrackToBase64(track) {
-    console.log(track)
     let dataBuffer = new DataBuffer()
     dataBuffer.write(2)
     dataBuffer.writeUTF8(removeNonAscii(track.title))

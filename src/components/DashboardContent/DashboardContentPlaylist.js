@@ -95,10 +95,8 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
         if(props.isLoggedIn) {
             setCurrentlyLoading(true)
             fetch(BACKEND_URL + "/getPlaylist?token=" + props.accessToken + "&playlist=" + playlistID).then(res => res.json()).then(res => {
-                console.log(res)
                 if(res.hasOwnProperty("data") && res.data.hasOwnProperty("contents")) {
                     let contents = res.data.contents
-                    console.log(contents)
                     setCardsInitial(contents)
                     setCards(contents)
 
@@ -133,8 +131,6 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
         let videoData = {url: strip(video.video.url), author: strip(video.uploader.username), videoID: strip(video.video.id), duration: hmsToSecondsOnly(strip(video.video.duration))*1000, id: uuidv4(), title: strip(video.video.title)}
 
         videoData.data = encodeTrackToBase64({title: videoData.title, artist: videoData.author, duration: videoData.duration, videoID: videoData.videoID, url: videoData.url})
-        console.log("Selected: ", videoData)
-        console.log(videoData.data)
         setCards([...cards, videoData])
     }
 

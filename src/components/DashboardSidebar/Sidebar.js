@@ -36,12 +36,6 @@ export default withRouter(connect(mapStateToProps)(function Sidebar(props) {
                 {props.data !== null && props.data !== undefined && props.data.playlists.map((item, i) => (
                     <Link key={i} to={"/app/p/" + item.ref} className={styles.a}><li className={styles.listItem + (currentlySelected(item.ref) ? " " + styles.listItemSelected : "")}>{item.name}</li></Link>
                 ))}
-
-                {/*<li className={styles.category + " " + styles.listItem}>SERVERS <div className={styles.addIconWrapper}><FontAwesomeIcon className={styles.addIcon} icon={faPlus}/></div></li>*/}
-                {/*<Link to={"/app"} className={styles.a}><li className={styles.listItem}>Cavey McCaveFace</li></Link>*/}
-                {/*<Link to={"/app"} className={styles.a}><li className={styles.listItem}>chime lounge</li></Link>*/}
-                {/*<Link to={"/app"} className={styles.a}><li className={styles.listItem}>realverse</li></Link>*/}
-                {/*<Link to={"/app"} className={styles.a}><li className={styles.listItem}>Raqbit's Wholesome Corner of the world</li></Link>*/}
             </ul>
             <PlaylistAddModal showModal={showPlaylistAddModal} onClose={() => setShowPlaylistAddModal(false)}/>
         </div>
