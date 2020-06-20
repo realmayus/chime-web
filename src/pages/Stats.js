@@ -4,6 +4,7 @@ import {Line} from "react-chartjs-2"
 import {BACKEND_URL} from "../constants";
 import WarningBox from "../components/Minor/WarningBox";
 import {SpinnerBig} from "../components/Minor/Spinner";
+import LiveIndicator from "../components/Minor/LiveIndicator";
 
 
 export default function Stats() {
@@ -11,8 +12,7 @@ export default function Stats() {
     let [error, setError] = useState(null)
     let [loading, setLoading] = useState(false)
 
-
-    useEffect(() => {
+    const fetchStats = () => {
         setLoading(true)
         fetch(BACKEND_URL + "/getStats?limit=20").then(res => res.json()).then(res => {
 
@@ -41,6 +41,11 @@ export default function Stats() {
             setError(String(err))
             setLoading(false)
         })
+    }
+
+    useEffect(() => {
+        fetchStats()
+        setInterval(fetchStats, 60 * 1000) //re-fetch every minute
     }, [])
 
     return (
@@ -49,8 +54,10 @@ export default function Stats() {
                 <h1 className={styles.headline}>Stats</h1>
             </div>
 
-            { error != null &&
+            { error != null ?
             <WarningBox text={<div><b>An error ocurred: </b> <code>{error}</code></div>}/>
+
+            : <LiveIndicator/>
             }
 
             <div className={styles.section}>
