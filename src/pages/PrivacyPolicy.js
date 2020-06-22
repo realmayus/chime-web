@@ -10,8 +10,6 @@ export default function PrivacyPolicy() {
 
             <p>If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>
 
-            <p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in chime. This policy is not applicable to any information collected offline or via channels other than this website.</p>
-
             <h2>Consent</h2>
 
             <p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
@@ -33,11 +31,6 @@ export default function PrivacyPolicy() {
 
             <ul>
                 <li>Provide, operate, and maintain our webste</li>
-                <li>Improve, personalize, and expand our webste</li>
-                <li>Understand and analyze how you use our webste</li>
-                <li>Develop new products, services, features, and functionality</li>
-                <li>Communicate with you, either directly or through one of our partners, including for customer service, to provide you with updates and other information relating to the webste, and for marketing and promotional purposes</li>
-                <li>Send you emails</li>
                 <li>Find and prevent fraud</li>
             </ul>
 
