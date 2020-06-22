@@ -84,7 +84,6 @@ export default function Stats() {
                                     ticks: {
                                         min: 0,
                                         stepSize: 1,
-                                        max: 6
                                     },
 
                                 }]
