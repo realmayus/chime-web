@@ -7,6 +7,7 @@ import IconPillButton from "../Minor/IconPillButton"
 import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
 import {SpinnerMedium} from "../Minor/Spinner"
+import {useLocalStorage} from "../../util";
 
 const mapStateToProps = (state) => {
     return {
@@ -23,6 +24,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
     let [dontClose, setDontClose] = useState(false)
     let [showResults, setShowResults] = useState(true)
     let resultsWrapper = useRef(null)
+    const [discordToken,] = useLocalStorage('discordToken', null);
 
     useEffect(() => {
         if(props.showModal !== isOpened) {
@@ -34,7 +36,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
         setShowResults(false);
         e.preventDefault()
         setCurrentlyLoading(true)
-        fetch(BACKEND_URL + "/getSearchResults?token=" + props.accessToken + "&query=" + encodeURIComponent(searchQuery)).then(res => res.json()).then(res => {
+        fetch(BACKEND_URL + "/getSearchResults?token=" + /*props.accessToken*/ discordToken + "&query=" + encodeURIComponent(searchQuery)).then(res => res.json()).then(res => {
             if(res.hasOwnProperty("results")) {
                 let results_ = res.results
                 setResults(results_)

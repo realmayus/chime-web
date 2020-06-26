@@ -4,11 +4,10 @@ import TrackItem from "../Minor/TrackItem"
 import IconPillButton from "../Minor/IconPillButton"
 import {faCheck, faClone, faExclamationTriangle, faPlus, faShare} from "@fortawesome/free-solid-svg-icons"
 import update from 'immutability-helper'
-import {compare_arrays, encodeTrackToBase64, hmsToSecondsOnly, strip, uuidv4} from "../../util"
+import {compare_arrays, encodeTrackToBase64, hmsToSecondsOnly, strip, useLocalStorage, uuidv4} from "../../util"
 import {useDrop} from "react-dnd"
 import {ItemTypes} from "../../assets/ItemTypes"
 import SongAddModal from "./SongAddModal"
-import Sidebar from "../DashboardSidebar/Sidebar"
 import {useParams} from "react-router-dom"
 import {connect} from "react-redux"
 import {BACKEND_URL} from "../../constants"
@@ -23,7 +22,7 @@ const mapStateToProps = (state) => {
     return {
         data: state.data,
         isLoggedIn: state.isLoggedIn,
-        accessToken: state.accessToken
+        // accessToken: state.accessToken
     }
 }
 
@@ -38,6 +37,8 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     const [currentlyLoading, setCurrentlyLoading] = useState(false)
     const [error, setError] = useState("")
     let location = useLocation()
+
+    const [discordToken,] = useLocalStorage('discordToken', null);
 
 
     useEffect(() => {
@@ -94,7 +95,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     useEffect(() => {
         if(props.isLoggedIn) {
             setCurrentlyLoading(true)
-            fetch(BACKEND_URL + "/getPlaylist?token=" + props.accessToken + "&playlist=" + playlistID).then(res => res.json()).then(res => {
+            fetch(BACKEND_URL + "/getPlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + playlistID).then(res => res.json()).then(res => {
                 if(res.hasOwnProperty("data") && res.data.hasOwnProperty("contents")) {
                     let contents = res.data.contents
                     setCardsInitial(contents)
@@ -106,7 +107,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                 setCurrentlyLoading(false)
             })
         }
-    }, [location, props.accessToken, playlistID, props.isLoggedIn])
+    }, [discordToken, location/*, props.accessToken*/, playlistID, props.isLoggedIn])
 
     useEffect(() => {
         if(props.data.hasOwnProperty("playlists")) {
@@ -137,7 +138,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     const saveChanges = () => {
         //Loading indicator = on
         setCurrentlySaving(true)
-        fetch(BACKEND_URL + "/setPlaylist?token=" + props.accessToken + "&playlist=" + playlistID,
+        fetch(BACKEND_URL + "/setPlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + playlistID,
             {
                 method: 'POST',
                 headers: {
@@ -164,8 +165,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
 
     return(
         <div>
-            <Sidebar/>
-                <div className={styles.body}>
+                <div>
                     {error === ""
                         ? <div>
                             <div className={styles.titleWrapper}><span

@@ -1,0 +1,51 @@
+@import "../../assets/main"
+
+.img
+  height: 40px
+  border-radius: 50px
+  cursor: pointer
+
+.popupWrapper
+  position: absolute
+
+
+.popup
+  position: absolute
+  display: flex
+  align-items: center
+  transform: translateX(calc(-100% + 40px - 10px))
+  background-color: rgba(80, 80, 80, .9)
+  color: #ffffff
+  padding: 10px 20px
+  width: 200px
+  border-radius: 5px
+  .mainContent
+    .loggedInAs
+      display: block
+      font-size: 12px
+    .username
+      font-weight: 600
+  .signOutLink
+    margin-left: auto
+    font-weight: 600
+    color: #ff5151
+    text-decoration: none
+    &:hover
+      text-decoration: underline
+
+.fade-enter
+  opacity: 0.01
+
+
+.fade-enter-active
+  opacity: 1
+  transition: opacity 500ms ease-in
+
+
+.fade-leave
+  opacity: 1
+
+
+.fade-leave.fade-leave-active
+  opacity: 0.01
+  transition: opacity 300ms ease-in

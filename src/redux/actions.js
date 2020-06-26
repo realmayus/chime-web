@@ -16,6 +16,8 @@ export function setLoggedIn(isLoggedIn) {
     return { type: SET_LOGGED_IN, isLoggedIn }
 }
 
+
+
 export function setUsername(username) {
     return { type: SET_USERNAME, username }
 }

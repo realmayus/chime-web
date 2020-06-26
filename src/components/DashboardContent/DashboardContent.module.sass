@@ -3,16 +3,16 @@
 .body
   background-color: $grayAccent2
   margin-left: 330px
-  width: calc(100vw - 330px - 60px)
+  width: calc(100vw - 330px - 60px - 60px)
   height: calc(100vh - 60px)
   position: absolute
   padding-left: 60px
-
+  padding-right: 60px
 
 
 .songList
-  height: calc(100vh - 250px)
-  width: calc(100vw - 390px)
+  height: calc(100vh - 270px)
+  width: calc(100vw - 420px)
   overflow-y: auto
 
   /* width */
@@ -65,6 +65,12 @@
   color: $grayAccent5
   margin-left: 10px
   cursor: pointer
+  -webkit-transition: color .15s ease-in-out
+  -moz-transition: color .15s ease-in-out
+  -o-transition: color .15s ease-in-out
+  -ms-transition: color .15s ease-in-out
+  transition: color .15s ease-in-out
+
   &:hover
     color: #ffffff
 

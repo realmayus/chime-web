@@ -1,0 +1,33 @@
+/* ENTER TRANSITION */
+/* Declare transition start properties*/
+.slide-appear
+  transform: translateX(-1vw)
+  opacity: 0
+  #root
+    background-color: #424242
+
+/* Declare transition properties */
+.slide-appear.slide-appear-active
+  transform: translateX(0)
+  opacity: 1
+  transition: opacity .3s ease-in-out, transform .4s cubic-bezier(.57,0,0,.99)
+  #root
+    background-color: #424242
+
+
+.slide-appear.slide-appear-done
+  #root
+    background-color: unset
+
+
+
+.slideDown-appear
+  transform: translate(calc(-100% + 40px - 10px), -10px)
+  opacity: 0
+
+
+/* Declare transition properties */
+.slideDown-appear.slideDown-appear-active
+  transform: translate(calc(-100% + 40px - 10px), 0)
+  opacity: 1
+  transition: opacity .15s ease-in-out, transform .25s cubic-bezier(.57,0,0,.99)

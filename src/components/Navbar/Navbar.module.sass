@@ -29,22 +29,34 @@ $menubarHeight: 60px
   line-height: $menubarHeight
   height: $menubarHeight
   display: inline-block
-  -webkit-transition: all .2s ease-in-out
-  -moz-transition: all .2s ease-in-out
-  -o-transition: all .2s ease-in-out
-  -ms-transition: all .2s ease-in-out
-  transition: all .2s ease-in-out
+  -webkit-transition: all .17s ease-in-out
+  -moz-transition: all .17s ease-in-out
+  -o-transition: all .17s ease-in-out
+  -ms-transition: all .17s ease-in-out
+  transition: all .17s ease-in-out
   &.highlighted
     background-color: $yellowAccentHighlighted
     color: #000000
     padding-left: 20px
     padding-right: 20px
     margin-right: 15px
+  &.selected
+    color: #ffffff
   &:hover
     &:not(.highlighted)
       color: #ffffff
     &.highlighted
       background-color: #ffffff
+  //
+  //&:last-child
+  //  margin-right: 40px
 
-  &:last-child
-    margin-right: 40px
+.avatar
+  height: 40px
+  margin-right: 40px
+  margin-left: 15px
+  display: inline-block
+
+.rightWrapper
+  display: flex
+  align-items: center

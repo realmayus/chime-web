@@ -22,7 +22,7 @@
   right: 0
   bottom: 0
   background-color: rgba(0, 0, 0, .80)
-
+  z-index: 10
 
 .search
   line-height: 24px
@@ -37,6 +37,11 @@
   font-weight: 500
   font-size: 16px
   width: 100%
+  -webkit-transition: border .15s ease-in-out
+  -moz-transition: border .15s ease-in-out
+  -o-transition: border .15s ease-in-out
+  -ms-transition: border .15s ease-in-out
+  transition: border .15s ease-in-out
   &:focus
     //border: 2px solid $grayAccent3-4
     border: 2px solid #ffffff

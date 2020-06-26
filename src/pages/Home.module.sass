@@ -47,8 +47,9 @@
       margin-right: 40px
     &:hover
       //box-shadow: 0 2px 25px rgba(0, 0, 0, 0.5)
-      background-color: transparent
-      color: black
+      background-color: $grayAccent1
+      border: 5px solid $grayAccent1
+      transform: translateY(-3px)
 
 .textWrapper
   width: 800px
@@ -80,7 +81,6 @@
     transition: all ease 0.2s
 
   &:hover
-    color: black
     &::after
       height: 100%
 

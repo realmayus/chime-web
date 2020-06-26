@@ -8,10 +8,11 @@ import {connect} from "react-redux"
 import {useHistory, useLocation} from "react-router-dom"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {renamePlaylist, deletePlaylist} from "../../redux/actions"
+import {useLocalStorage} from "../../util";
 
 const mapStateToProps = (state) => {
     return {
-        accessToken: state.accessToken
+        // accessToken: state.accessToken
     }
 }
 
@@ -24,6 +25,7 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
     let [error, setError] = useState("")
     const history = useHistory()
     let location = useLocation()
+    const [discordToken,] = useLocalStorage('discordToken', null);
 
 
     useEffect(() => {
@@ -49,7 +51,7 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
         }
         setCurrentlyLoadingRename(true)
         props.dispatch(renamePlaylist(props.playlistID, playlistName))
-        fetch(BACKEND_URL + "/renamePlaylist?token=" + props.accessToken + "&playlist=" + props.playlistID + "&newName=" + playlistName).then(res => res.json())
+        fetch(BACKEND_URL + "/renamePlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + props.playlistID + "&newName=" + playlistName).then(res => res.json())
             .then(res => {
                 if (res.hasOwnProperty("status") && res.status === "OK") {
                     props.onClose()
@@ -69,7 +71,7 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
     const deletePlaylistHandler = () => {
         setError("")
         setCurrentlyLoadingDelete(true)
-        fetch(BACKEND_URL + "/deletePlaylist?token=" + props.accessToken + "&playlist=" + props.playlistID).then(res => res.json())
+        fetch(BACKEND_URL + "/deletePlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + props.playlistID).then(res => res.json())
             .then(res => {
                 if(res.hasOwnProperty("status") && res.status === "OK") {
                     setCurrentlyLoadingDelete(false)

@@ -1,12 +1,12 @@
-import React, {useEffect} from "react"
+import React from "react"
 import {connect} from "react-redux"
 import DashboardContentPlaylist from "../components/DashboardContent/DashboardContentPlaylist"
-import {Route, Switch, useHistory} from "react-router-dom"
+import {Link, Route, Switch} from "react-router-dom"
 import {DndProvider} from 'react-dnd'
 import {HTML5Backend} from 'react-dnd-html5-backend'
-import {BACKEND_URL} from "../constants"
-import {setAvatarURL, setData, setUsername} from "../redux/actions"
 import DashboardPlaceholder from "../components/DashboardContent/DashboardPlaceholder"
+import AnimatedPage from "../components/Minor/AnimatedPage";
+import Sidebar from "../components/DashboardSidebar/Sidebar";
 
 const mapStateToProps = (state) => {
     return {
@@ -16,33 +16,26 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(function Dashboard(props) {
-    const history = useHistory()
-
-    useEffect(() => {
-        if(props.isLoggedIn) {
-            fetch(BACKEND_URL + "/getProfile?token=" + props.accessToken).then(res => res.json()).then(res => {
-                props.dispatch(setAvatarURL(res.avatar_url))
-                props.dispatch(setUsername(res.user_name))
-                props.dispatch(setData(res.data))
-            })
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [props.accessToken, props.isLoggedIn])
-
     if(props.isLoggedIn) {
         return(
             <DndProvider backend={HTML5Backend}>
-                <div>
-                    <Switch>
-                        <Route exact path="/app" component={DashboardPlaceholder}/>
-                        <Route exact path="/app/p/:playlistID" component={DashboardContentPlaylist}/>
-                        <Route exact path="/app/g/:guildID" component={DashboardPlaceholder}/>
-                    </Switch>
-                </div>
+                <Sidebar/>
+                <DashboardPlaceholder>
+                    <div>
+                        <Switch>
+                            <Route exact path="/app" component={() => {
+                                return <div/>
+                            }}/>
+                            <Route exact path="/app/p/:playlistID" component={AnimatedPage(DashboardContentPlaylist, '#323232')}/>
+                            <Route exact path="/app/g/:guildID" component={() => {
+                                return <div/>
+                            }}/>
+                        </Switch>
+                    </div>
+                </DashboardPlaceholder>
             </DndProvider>
         )
     } else {
-        history.push("/oauth/login")  //Redirect to OAuth login page if user isn't logged in!
-        return(<div>Not logged in!</div>)
+        return(<div>Not logged in! <br/> <Link to={"/oauth/login"}>Log in</Link></div>)
     }
 })

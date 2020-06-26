@@ -66,7 +66,7 @@ export default function Features() {
                 </div>
             </div>
             <div className={styles.endSection}>
-                <h1 className={styles.sectionHeadline} >So, what are you waiting for?</h1>
+                <h1 className={styles.sectionHeadline} >Well, what are you waiting for?</h1>
                 <span>-&gt;</span><a className={styles.link} href={INVITE_URL}>Invite Chime</a>
                 <p className={styles.sectionText}>
                     If that didn’t sound convincing to you, you

@@ -9,6 +9,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons/faPlus"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faExclamationCircle} from "@fortawesome/free-solid-svg-icons";
 import {useLocation} from "react-router-dom";
+import {useLocalStorage} from "../../util";
 
 const mapStateToProps = (state) => {
     return {
@@ -22,6 +23,7 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
     let [currentlyLoading, setCurrentlyLoading] = useState(false)
     let [error, setError] = useState("")
     let location = useLocation()
+    const [discordToken,] = useLocalStorage('discordToken', null);
 
 
     useEffect(() => {
@@ -45,7 +47,7 @@ export default connect(mapStateToProps)(function PlaylistAddModal(props) {
 
 
         setCurrentlyLoading(true)
-        fetch(BACKEND_URL + "/createPlaylist?token=" + props.accessToken + "&playlist=" + encodeURIComponent(playlistName))
+        fetch(BACKEND_URL + "/createPlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + encodeURIComponent(playlistName))
             .then(res => res.json())
             .then(res => {
                 if(res.hasOwnProperty("status") && res.status === "OK") {
