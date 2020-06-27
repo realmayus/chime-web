@@ -39,8 +39,8 @@ export default function PrivacyPolicy() {
             <p>Chime temporarily stores your device's IP address in log files. The reason for this is to prevent abuse.</p>
 
 
-            <h2>Cookies</h2>
-            <p>Chime does not store any cookies on your device.</p>
+            <h2>Cookies / localStorage</h2>
+                <p>Chime does not store any cookies on your device but it stores your discord token on your PC by using <code>localStorage</code>. localStorage is a built-in browser feature which allows developers to store simple key-value pairs (text) in your browser's cache. By emptying this cache, the localStorage entries get deleted. This allows you to conveniently use the web app without having to re-authorize the web app through discord. If you want to delete the localStorage entry, you can do so by clicking on your avatar and choosing "Sign Out". The value of the localStorage entry then gets overwritten by <code>null</code>. The localStorage entry only gets used for this very purpose and isn't being used to e.g. track you.</p>
 
 
             <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
