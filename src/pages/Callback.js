@@ -14,9 +14,6 @@ export default connect()(withRouter(function Callback(props) {
         let params = queryString.parse(props.location.hash)
         if(params.access_token != null) {
             setDiscordToken(params.access_token);
-            console.log("set discord access token!", params.access_token, discordToken)
-            // props.dispatch(setAccessToken(params.access_token));
-            //TODO have to reload page after logging in for userdata to load (useEffect in app.js gets called even tho discordToken is still null HMMMMM
             props.dispatch(setLoggedIn(true));
             history.push("/app");
             window.location.reload();

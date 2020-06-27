@@ -36,6 +36,6 @@ export default connect(mapStateToProps)(function Dashboard(props) {
             </DndProvider>
         )
     } else {
-        return(<div>Not logged in! <br/> <Link to={"/oauth/login"}>Log in</Link></div>)
+        return(<div style={{textAlign: "center", backgroundColor: "#ffffff"}}>Not logged in! <br/> <Link to={"/oauth/login"}>Log in</Link></div>)
     }
 })
