@@ -40,8 +40,12 @@ export default function PrivacyPolicy() {
 
 
             <h2>Cookies / localStorage</h2>
-                <p>Chime does not store any cookies on your device but it stores your discord token on your PC by using <code>localStorage</code>. localStorage is a built-in browser feature which allows developers to store simple key-value pairs (text) in your browser's cache. By emptying this cache, the localStorage entries get deleted. This allows you to conveniently use the web app without having to re-authorize the web app through discord. If you want to delete the localStorage entry, you can do so by clicking on your avatar and choosing "Sign Out". The value of the localStorage entry then gets overwritten by <code>null</code>. The localStorage entry only gets used for this very purpose and isn't being used to e.g. track you.</p>
-
+                <p>Chime *itself* does not store any cookies on your device but it stores your discord token on your PC by using <code>localStorage</code>. localStorage is a built-in browser feature which allows developers to store simple key-value pairs (text) in your browser's cache. By emptying this cache, the localStorage entries get deleted. This allows you to conveniently use the web app without having to re-authorize the web app through discord. If you want to delete the localStorage entry, you can do so by clicking on your avatar and choosing "Sign Out". The value of the localStorage entry then gets overwritten by <code>null</code>. The localStorage entry only gets used for this very purpose and isn't being used to e.g. track you.</p>
+                <p>However, due to the fact that chime uses CloudFlare to protect its web services against malicious users and DDoS attacks there are some cookies placed on your device by CloudFlare. <a href="https://support.cloudflare.com/hc/en-us/articles/200170156-Understanding-the-Cloudflare-Cookies">Refer to this CloudFlare document</a> in order to understand what these cookies are being used for. In short, the cookies that CloudFlare places on your device are not being used for cross-site tracking, won't follow users from site to site or correspond to a user ID in our application.</p>
+                <p>These cookies are necessary for our site's protection and can therefore not be turned off.</p>
+            <h2>Related Privacy Policies</h2>
+                <p>Due to chime's features it interfaces with the Discord app. When you sign in, you will be redirected to Discord's servers in order to authorize chime for your Discord account. <a href={"https://discord.com/privacy"}>See Discord's Privacy Policy here.</a> </p>
+                <p>As mentioned earlier, chime's web app uses CloudFlare as a proxy to protect itself from users with e.g. malicious intent and DDoS attacks <a href={"https://www.cloudflare.com/privacypolicy/"}>See CloudFlare's privacy policy here.</a> </p>
 
             <h2>CCPA Privacy Rights (Do Not Sell My Personal Information)</h2>
 
