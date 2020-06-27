@@ -20,8 +20,8 @@ export default connect(mapStateToProps)(function App(props) {
 
     useEffect(() => {
         console.log("using effect, part 1!", discordToken)
-        if(discordToken != null) {
-            console.log("using effect, part 2!")
+        if(discordToken !== "null") {
+            console.log("using effect, part 2!", discordToken)
             props.dispatch(setLoggedIn(true))
             // props.dispatch(setAccessToken(discordToken))
             fetch(BACKEND_URL + "/getProfile?token=" + discordToken).then(res => res.json()).then(res => {

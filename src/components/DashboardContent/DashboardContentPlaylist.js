@@ -11,7 +11,7 @@ import SongAddModal from "./SongAddModal"
 import {useParams} from "react-router-dom"
 import {connect} from "react-redux"
 import {BACKEND_URL} from "../../constants"
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 import {SpinnerBig} from "../Minor/Spinner"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faPencilAlt} from "@fortawesome/free-solid-svg-icons/faPencilAlt"
@@ -37,7 +37,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     const [currentlyLoading, setCurrentlyLoading] = useState(false)
     const [error, setError] = useState("")
     let location = useLocation()
-
+    let history = useHistory()
     const [discordToken,] = useLocalStorage('discordToken', null);
 
 
@@ -90,7 +90,11 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     const [, drop] = useDrop({ accept: ItemTypes.CARD })
 
     const getPlaylist = () => {
-        return props.data.playlists.find(item => item.ref === playlistID)
+        if(props.data != null) {
+            return props.data.playlists.find(item => item.ref === playlistID)
+        } else {
+            return null
+        }
     }
     useEffect(() => {
         if(props.isLoggedIn) {
@@ -110,7 +114,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     }, [discordToken, location/*, props.accessToken*/, playlistID, props.isLoggedIn])
 
     useEffect(() => {
-        if(props.data.hasOwnProperty("playlists")) {
+        if(props.data != null && props.data.hasOwnProperty("playlists")) {
             if(!compare_arrays(cards, cardsInitial)) {
                 setChangesMade(true)
                 window.onbeforeunload = () => true //show confirm dialog when user wants to close/reload tab
@@ -161,6 +165,11 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                 setCurrentlySaving(false)
                 console.log(err)
             })
+    }
+
+    if(getPlaylist() == null) {
+        history.push("/app")
+        return null
     }
 
     return(
