@@ -5,6 +5,7 @@ import PlaylistScrot from "../assets/playlistScrot.png";
 import WebAppScrot from "../assets/webappScrot.png";
 import HelpScrot from "../assets/HelpScrot.png";
 import GithubLogo from "../assets/githubLogo.svg";
+import StyledLink from "../components/Minor/StyledLink";
 
 
 export default function Features() {
@@ -67,11 +68,11 @@ export default function Features() {
             </div>
             <div className={styles.endSection}>
                 <h1 className={styles.sectionHeadline} >Well, what are you waiting for?</h1>
-                <span>-&gt;</span><a className={styles.link} href={INVITE_URL}>Invite Chime</a>
+                <StyledLink link={INVITE_URL} showArrow={true} text={"Invite Chime"}/>
                 <p className={styles.sectionText}>
                     If that didn’t sound convincing to you, you
                     can test chime on our official discord server</p>
-                <span>-&gt;</span><a className={styles.link} href={SERVER_INVITE_URL}>Join the discord server</a>
+                <StyledLink link={SERVER_INVITE_URL} showArrow={true} text={"Join our discord server"}/>
             </div>
 
         </div>
