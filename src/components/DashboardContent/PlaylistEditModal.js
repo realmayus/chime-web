@@ -66,7 +66,7 @@ export default connect()(function PlaylistEditModal(props) {
     const deletePlaylistHandler = () => {
         setError("")
         setCurrentlyLoadingDelete(true)
-        fetch(BACKEND_URL + "/deletePlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + props.playlistID).then(res => res.json())
+        fetch(BACKEND_URL + "/deletePlaylist?token=" + discordToken + "&playlist=" + props.playlistID).then(res => res.json())
             .then(res => {
                 if(res.hasOwnProperty("status") && res.status === "OK") {
                     setCurrentlyLoadingDelete(false)

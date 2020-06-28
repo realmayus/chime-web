@@ -86,9 +86,7 @@ export function useLocalStorage(key, initialValue) {
     const [storedValue, setStoredValue] = useState(() => {
         try {
             // Get from local storage by key
-            const item = window.localStorage.getItem(key);
-            console.log(item)
-            return item;
+            return window.localStorage.getItem(key);
         } catch (error) {
             // If error also return initialValue
             console.log(error);
