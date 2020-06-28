@@ -55,12 +55,12 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
                 setShowResults(true);
                 setCurrentlyLoading(false);
             } else {
-                alert("Couldn't fetch backend, please see log!");
+                setError("Couldn't fetch backend, please see log!");
                 setCurrentlyLoading(false);
                 console.log(res);
             }
         }).catch(err => {
-            alert("Couldn't fetch backend, please see log!");
+            setError("Couldn't fetch backend, please see log!");
             setCurrentlyLoading(false);
             console.log(err);
         })
