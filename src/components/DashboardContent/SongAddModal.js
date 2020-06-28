@@ -2,12 +2,12 @@ import React, {useEffect, useRef, useState} from "react"
 import ReactModal from "react-modal"
 import styles from "../../assets/modal.module.sass"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faArrowLeft, faArrowRight, faSearch} from "@fortawesome/free-solid-svg-icons"
+import {faArrowLeft, faArrowRight, faExclamationCircle, faSearch} from "@fortawesome/free-solid-svg-icons"
 import IconPillButton from "../Minor/IconPillButton"
 import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
 import {SpinnerMedium} from "../Minor/Spinner"
-import {useLocalStorage} from "../../util";
+import {get_pretty_time_delta, useLocalStorage} from "../../util";
 
 const mapStateToProps = (state) => {
     return {
@@ -23,6 +23,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
     let [currentlyLoading, setCurrentlyLoading] = useState(false)
     let [dontClose, setDontClose] = useState(false)
     let [showResults, setShowResults] = useState(true)
+    let [error, setError] = useState("")
     let resultsWrapper = useRef(null)
     const [discordToken,] = useLocalStorage('discordToken', null);
 
@@ -37,27 +38,38 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
         e.preventDefault()
         setCurrentlyLoading(true)
         fetch(BACKEND_URL + "/getSearchResults?token=" + /*props.accessToken*/ discordToken + "&query=" + encodeURIComponent(searchQuery)).then(res => res.json()).then(res => {
-            if(res.hasOwnProperty("results")) {
-                let results_ = res.results
-                setResults(results_)
+            setError("");
+            if(res.hasOwnProperty("loadType") && res.loadType === "NO_MATCHES") {
+                setError("No videos found!");
+                setCurrentlyLoading(false);
+                return;
+            }
+            if(res.hasOwnProperty("loadType") && res.loadType !== "SEARCH_RESULT" && res.loadType !== "TRACK_LOADED" && res.loadType !== "PLAYLIST_LOADED") {
+                setError("Couldn't load video.");
+                setCurrentlyLoading(false);
+                return;
+            }
+            if(res.hasOwnProperty("tracks")) {
+                let results_ = res.tracks;
+                setResults(results_);
                 setShowResults(true);
-                setCurrentlyLoading(false)
+                setCurrentlyLoading(false);
             } else {
-                alert("Couldn't fetch backend, please see log!")
-                setCurrentlyLoading(false)
-                console.log(res)
+                alert("Couldn't fetch backend, please see log!");
+                setCurrentlyLoading(false);
+                console.log(res);
             }
         }).catch(err => {
-            alert("Couldn't fetch backend, please see log!")
-            setCurrentlyLoading(false)
-            console.log(err)
+            alert("Couldn't fetch backend, please see log!");
+            setCurrentlyLoading(false);
+            console.log(err);
         })
     }
     const scroll = (direction) => {
         if(direction === "right") {
-            resultsWrapper.current.scrollBy({left: 307, top: 0, behavior: "smooth"})
+            resultsWrapper.current.scrollBy({left: 307, top: 0, behavior: "smooth"});
         } else {
-            resultsWrapper.current.scrollBy({left: -307, top: 0, behavior: "smooth"})
+            resultsWrapper.current.scrollBy({left: -307, top: 0, behavior: "smooth"});
         }
     }
 
@@ -89,6 +101,12 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
                     <input className={styles.search} type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}/>
                     <IconPillButton icon={faSearch} text={"Search"} inverted={true}/>
                 </form>
+                { error.length > 0 &&
+                    <div className={styles.warningWrapper}>
+                        <FontAwesomeIcon className={styles.warningIcon} icon={faExclamationCircle}/>
+                        <p>{error}</p>
+                    </div>
+                }
                 { results.length > 0 && showResults &&
                 <div>
                     <label className={styles.checkboxContainer}> Don't close window automatically
@@ -106,14 +124,12 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
                         <div className={styles.resultsOuterWrapper} ref={resultsWrapper}>
                             {results.map((item, i) => (
                                 <div key={i} >
-                                    { !(item.video.upload_date === undefined || item.video.upload_date === "") &&  // YouTube mixes don't have upload dates so we can filter them out using this check
                                     <div className={styles.resultWrapper} onClick={() => handleSongSelect(item)}>
-                                        <img src={item.video["thumbnail_src"]} alt="thumbnail"
+                                        <img src={`https://img.youtube.com/vi/${encodeURIComponent(item.info.identifier)}/0.jpg`} alt="thumbnail"
                                              className={styles.resultThumbnail}/>
-                                        <h3 className={styles.resultTitle}>{item.video.title}</h3>
-                                        <p>{item.video.views} • {item.uploader.username}</p>
+                                        <h3 className={styles.resultTitle}>{item.info.title}</h3>
+                                        <p>{get_pretty_time_delta(item.info.length)} • {item.info.author}</p>
                                     </div>
-                                    }
                                 </div>
                             ))}
                         </div>

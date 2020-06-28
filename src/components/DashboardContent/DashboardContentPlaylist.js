@@ -4,7 +4,7 @@ import TrackItem from "../Minor/TrackItem"
 import IconPillButton from "../Minor/IconPillButton"
 import {faCheck, faClone, faExclamationTriangle, faPlus, faShare} from "@fortawesome/free-solid-svg-icons"
 import update from 'immutability-helper'
-import {compare_arrays, encodeTrackToBase64, hmsToSecondsOnly, strip, useLocalStorage, uuidv4} from "../../util"
+import {compare_arrays, useLocalStorage, uuidv4} from "../../util"
 import {useDrop} from "react-dnd"
 import {ItemTypes} from "../../assets/ItemTypes"
 import SongAddModal from "./SongAddModal"
@@ -133,9 +133,11 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     }
 
     const addSong = (video) => {
-        let videoData = {url: strip(video.video.url), author: strip(video.uploader.username), videoID: strip(video.video.id), duration: hmsToSecondsOnly(strip(video.video.duration))*1000, id: uuidv4(), title: strip(video.video.title)}
 
-        videoData.data = encodeTrackToBase64({title: videoData.title, artist: videoData.author, duration: videoData.duration, videoID: videoData.videoID, url: videoData.url})
+        let videoData = {url: video.info.uri, author: video.info.author, videoID: video.info.identifier, duration: video.info.length, id: uuidv4(), title: video.info.title, data: video.track}
+
+        // let videoData = {url: strip(video.video.url), author: strip(video.uploader.username), videoID: strip(video.video.id), duration: hmsToSecondsOnly(strip(video.video.duration))*1000, id: uuidv4(), title: strip(video.video.title)}
+        // videoData.data = encodeTrackToBase64({title: videoData.title, artist: videoData.author, duration: videoData.duration, videoID: videoData.videoID, url: videoData.url})
         setCards([...cards, videoData])
     }
 
