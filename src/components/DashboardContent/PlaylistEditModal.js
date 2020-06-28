@@ -50,10 +50,10 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
             return
         }
         setCurrentlyLoadingRename(true)
-        props.dispatch(renamePlaylist(props.playlistID, playlistName))
         fetch(BACKEND_URL + "/renamePlaylist?token=" + /*props.accessToken*/ discordToken + "&playlist=" + props.playlistID + "&newName=" + playlistName).then(res => res.json())
             .then(res => {
                 if (res.hasOwnProperty("status") && res.status === "OK") {
+                    props.dispatch(renamePlaylist(props.playlistID, playlistName))
                     props.onClose()
                     setCurrentlyLoadingRename(false)
                 } else {
