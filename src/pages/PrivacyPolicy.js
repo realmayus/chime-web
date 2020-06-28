@@ -1,5 +1,8 @@
 import React from "react"
-import styles from "./PrivacyPolicy.module.sass"
+import styles from "./StaticContent.module.sass"
+
+
+export const version = "1.0.2";
 
 export default function PrivacyPolicy() {
     return(
@@ -41,6 +44,7 @@ export default function PrivacyPolicy() {
 
             <h2>Cookies / localStorage</h2>
                 <p>Chime *itself* does not store any cookies on your device but it stores your discord token on your PC by using <code>localStorage</code>. localStorage is a built-in browser feature which allows developers to store simple key-value pairs (text) in your browser's cache. By emptying this cache, the localStorage entries get deleted. This allows you to conveniently use the web app without having to re-authorize the web app through discord. If you want to delete the localStorage entry, you can do so by clicking on your avatar and choosing "Sign Out". The value of the localStorage entry then gets overwritten by <code>null</code>. The localStorage entry only gets used for this very purpose and isn't being used to e.g. track you.</p>
+                <p>Also, it stores a value that tells us whether you have clicked on the 'X' of the privacy & terms of service popup so that we don't need to show it you again. We also store the last version of the read privacy policy and terms of service so that we can show you a popup so you know when these policies changed.</p>
                 <p>However, due to the fact that chime uses CloudFlare to protect its web services against malicious users and DDoS attacks there are some cookies placed on your device by CloudFlare. <a href="https://support.cloudflare.com/hc/en-us/articles/200170156-Understanding-the-Cloudflare-Cookies">Refer to this CloudFlare document</a> in order to understand what these cookies are being used for. In short, the cookies that CloudFlare places on your device are not being used for cross-site tracking, won't follow users from site to site or correspond to a user ID in our application.</p>
                 <p>These cookies are necessary for our site's protection and can therefore not be turned off.</p>
             <h2>Related Privacy Policies</h2>
@@ -80,8 +84,7 @@ export default function PrivacyPolicy() {
 
             <h2>Contact</h2>
             <p>If you have any questions or inquiries, please do not hesitate to contact me at:</p>
-            <p>realmayus(AT)gmail.com</p>
-            <p>(you have to replace (AT) with the @-sign)</p>
+            <a href={"mailto:contact@realmayus.xyz?subject=" + encodeURIComponent("Question regarding chime's privacy policy")}>contact@realmayus.xyz</a>
         </div>
     )
 }

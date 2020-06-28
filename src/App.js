@@ -5,8 +5,13 @@ import {connect} from "react-redux";
 import {useLocalStorage} from "./util";
 import {setAvatarURL, setData, setLoggedIn, setUsername} from "./redux/actions";
 import {BACKEND_URL} from "./constants";
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import Footer from "./components/Footer/Footer";
+import InfoBanner from "./components/Minor/InfoBanner";
+import AnimatedComp from "./components/Minor/AnimatedComp";
+import {version as tosVersion} from "./pages/TermsOfService";
+import {version as privacyVersion} from "./pages/PrivacyPolicy";
+
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.isLoggedIn,
@@ -16,6 +21,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(function App(props) {
     const [discordToken, ] = useLocalStorage('discordToken', null);
+    const [hideBanner, setHideBanner] = useLocalStorage('TosPrivacyBanner', false);
+    const [tosVersionSaved, setTosVersion] = useLocalStorage('tosVersion', false);
+    const [privacyVersionSaved, setPrivacyVersion] = useLocalStorage('privacyVersion', false);
     const location = useLocation();
 
     useEffect(() => {
@@ -32,6 +40,35 @@ export default connect(mapStateToProps)(function App(props) {
     }, [discordToken, props.doneLoggingIn])
     return(
         <div >
+            { !hideBanner &&
+                <AnimatedComp><InfoBanner
+                text={<span>By using this web app, you agree to the <Link style={{color: "#585858"}} to='/terms'>Terms of Service</Link> and our <Link
+                    style={{color: "#585858"}} to={"/privacy"}>Privacy Policy</Link>.</span>}
+                callbackOK={() => {
+                    setHideBanner(true);
+                    setTosVersion(tosVersion);
+                    setPrivacyVersion(privacyVersion);
+                }}/></AnimatedComp>
+            }
+
+            { hideBanner && tosVersionSaved !== tosVersion &&
+                <AnimatedComp><InfoBanner
+                    text={<span>Chime updated its Terms of Service! Read them <Link style={{color: "#585858"}} to='/terms'>here</Link>.</span>}
+                    callbackOK={() => {
+                        setHideBanner(true);
+                        setTosVersion(tosVersion);
+                }}/></AnimatedComp>
+            }
+
+            { hideBanner && privacyVersionSaved !== privacyVersion &&
+                <AnimatedComp><InfoBanner
+                    text={<span>Chime updated its Privacy Policy! Read it <Link style={{color: "#585858"}} to='/privacy'>here</Link>.</span>}
+                    callbackOK={() => {
+                        setHideBanner(true);
+                        setPrivacyVersion(privacyVersion);
+                }}/>
+                </AnimatedComp>
+            }
             <Navbar/>
             <Main/>
             { location.pathname === "/" &&

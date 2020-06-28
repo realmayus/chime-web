@@ -9,6 +9,8 @@ export default function Footer() {
             <span className={styles.dot}>•</span>
             <Link to={"/privacy"} className={styles.footerLink}>Privacy</Link>
             <span className={styles.dot}>•</span>
+            <Link to={"/terms"} className={styles.footerLink}>Terms of Service</Link>
+            <span className={styles.dot}>•</span>
             <a href="https://github.com/realmayus/chime-web" className={styles.footerLink} >GitHub</a>
         </footer>
     )

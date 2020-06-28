@@ -1,0 +1,31 @@
+@import "../../assets/main"
+
+.banner
+  position: fixed
+  display: flex
+  align-items: center
+  width: 300px
+  padding: 20px
+  background-color: rgba(255, 223, 161, 1)
+  border-radius: 10px
+  bottom: 30px
+  left: 30px
+  z-index: 10000
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+
+
+
+.text
+  transition: color .15s ease-in-out
+  color: black
+  font-size: 14px
+
+
+.icon
+  transition: color .15s ease-in-out
+  margin-left: 10px
+  font-size: 20px
+  color: rgba(0, 0, 0, .3)
+  cursor: pointer
+  &:hover
+    color: $grayAccent3 !important
