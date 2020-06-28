@@ -10,14 +10,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {renamePlaylist, deletePlaylist} from "../../redux/actions"
 import {useLocalStorage} from "../../util";
 
-const mapStateToProps = (state) => {
-    return {
-        // accessToken: state.accessToken
-    }
-}
 
-
-export default connect(mapStateToProps)(function PlaylistEditModal(props) {
+export default connect()(function PlaylistEditModal(props) {
     let [isOpened, setOpened] = useState(false)
     let [playlistName, setPlaylistName] = useState(props.name)
     let [currentlyLoadingRename, setCurrentlyLoadingRename] = useState(false)
@@ -54,6 +48,7 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
             .then(res => {
                 if (res.hasOwnProperty("status") && res.status === "OK") {
                     props.dispatch(renamePlaylist(props.playlistID, playlistName))
+                    setError("")
                     props.onClose()
                     setCurrentlyLoadingRename(false)
                 } else {
@@ -97,7 +92,10 @@ export default connect(mapStateToProps)(function PlaylistEditModal(props) {
             <ReactModal
                 isOpen={isOpened}
                 contentLabel={"Edit"}
-                onRequestClose={props.onClose}
+                onRequestClose={() => {
+                    setError("");
+                    props.onClose();
+                }}
                 className={styles.modal}
                 overlayClassName={styles.modalOverlay}
             >
