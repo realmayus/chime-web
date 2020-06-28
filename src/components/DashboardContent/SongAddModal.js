@@ -36,7 +36,11 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
     const handleFormSubmit = e => {
         setShowResults(false);
         e.preventDefault()
-        setCurrentlyLoading(true)
+        if (searchQuery === "") {
+            setError("Please enter a search term.");
+            return;
+        }
+        setCurrentlyLoading(true);
         fetch(BACKEND_URL + "/getSearchResults?token=" + /*props.accessToken*/ discordToken + "&query=" + encodeURIComponent(searchQuery)).then(res => res.json()).then(res => {
             setError("");
             if(res.hasOwnProperty("loadType") && res.loadType === "NO_MATCHES") {
