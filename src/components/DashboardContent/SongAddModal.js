@@ -80,14 +80,15 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
     const handleSongSelect = (item) => {
         props.onSongSelect(item)
         if(!dontClose) {
-            setResults([])
-            setSearchQuery("")
             handleClose()
         }
     }
 
     const handleClose = () => {
         setDontClose(false);
+        setResults([])
+        setSearchQuery("")
+        setError("");
         props.onClose();
     }
 
