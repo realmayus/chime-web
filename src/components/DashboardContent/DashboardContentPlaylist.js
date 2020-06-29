@@ -16,6 +16,8 @@ import {SpinnerBig} from "../Minor/Spinner"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faPencilAlt} from "@fortawesome/free-solid-svg-icons/faPencilAlt"
 import PlaylistEditModal from "./PlaylistEditModal"
+import PlaylistCloneModal from "./PlaylistCloneModal";
+import PlaylistShareModal from "./PlaylistShareModal";
 
 
 const mapStateToProps = (state) => {
@@ -33,6 +35,8 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
     const [cards, setCards] = useState([])
     const [showAddModal, setShowAddModal] = useState(false)
     const [showEditModal, setShowEditModal] = useState(false)
+    const [showCloneModal, setShowCloneModal] = useState(false)
+    const [showShareModal, setShowShareModal] = useState(false)
     const [currentlySaving, setCurrentlySaving] = useState(false)
     const [currentlyLoading, setCurrentlyLoading] = useState(false)
     const [error, setError] = useState("")
@@ -184,8 +188,8 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                                 onClick={() => setShowEditModal(true)} className={styles.editIcon} icon={faPencilAlt}/></div>
                                 <div className={styles.actionContainer}>
                                     <IconPillButton icon={faPlus} text="Add" onclick={() => setShowAddModal(true)}/>
-                                    <IconPillButton icon={faClone} text="Clone" onclick={() => alert("WIP")}/>
-                                    <IconPillButton icon={faShare} text="Share" onclick={() => alert("WIP")}/>
+                                    <IconPillButton icon={faClone} text="Clone" onclick={() => setShowCloneModal(true)}/>
+                                    <IconPillButton icon={faShare} text="Share" onclick={() => setShowShareModal(true)}/>
                                     {changesMade &&
                                     <IconPillButton inverted={true} icon={faCheck} text="Save Changes" onclick={saveChanges}
                                                     loading={currentlySaving}/>
@@ -211,6 +215,8 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                 </div>
             <SongAddModal onSongSelect={addSong} showModal={showAddModal} onClose={() => setShowAddModal(false)}/>
             <PlaylistEditModal showModal={showEditModal} onClose={() => setShowEditModal(false)} name={getPlaylist().name} playlistID={getPlaylist().ref}/>
+            <PlaylistCloneModal showModal={showCloneModal} onClose={() => setShowCloneModal(false)} name={getPlaylist().name} playlistID={getPlaylist().ref}/>
+            <PlaylistShareModal showModal={showShareModal} onClose={() => setShowShareModal(false)} name={getPlaylist().name} playlistID={getPlaylist().ref}/>
         </div>
 
     )

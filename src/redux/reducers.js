@@ -1,28 +1,24 @@
 import {
     ADD_PLAYLIST, REMOVE_PLAYLIST,
     RENAME_PLAYLIST,
-    SET_ACCESS_TOKEN,
     SET_AVATAR_URL,
     SET_DATA,
+    SET_DISCORD_ID,
     SET_LOGGED_IN,
     SET_USERNAME
 } from "./actions"
 
 const initialState = {
-    accessToken: null,
     isLoggedIn: false,
     username: null,
     avatarURL: null,
+    discordID: null,
     data: null
 }
 
 
 function loginReducer(state = initialState, action) {
     switch (action.type) {
-        case SET_ACCESS_TOKEN:
-            return Object.assign({}, state, {
-                accessToken: action.accessToken
-            })
         case SET_LOGGED_IN:
             return Object.assign({}, state, {
                 isLoggedIn: action.isLoggedIn
@@ -34,6 +30,10 @@ function loginReducer(state = initialState, action) {
         case SET_AVATAR_URL:
             return Object.assign({}, state, {
                 avatarURL: action.avatarURL
+            })
+        case SET_DISCORD_ID:
+            return Object.assign({}, state, {
+                discordID: action.discordID
             })
         case SET_DATA:
             return Object.assign({}, state, {

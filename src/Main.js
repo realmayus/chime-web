@@ -13,6 +13,7 @@ import {connect} from "react-redux";
 import {useLocalStorage} from "./util";
 import {useHistory} from "react-router-dom";
 import TermsOfService from "./pages/TermsOfService";
+import SharedView from "./pages/SharedView";
 
 
 export default connect() (function Main(props) {
@@ -62,8 +63,8 @@ export default connect() (function Main(props) {
                     <Route exact path="/oauth/callback" component={Callback}/>
 
 
-
                     <Route path="/app" component={Dashboard}/>
+                    <Route path="/view/:sharecode" component={SharedView}/>
 
                     <Route exact path="/404" component={() => {
                         return <div style={{textAlign: "center"}}><h1>Wow, such empty</h1><p>404. There doesn't seem to be anything here.</p></div>

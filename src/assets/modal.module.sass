@@ -40,7 +40,6 @@
   -webkit-transition: border .15s ease-in-out
   -moz-transition: border .15s ease-in-out
   -o-transition: border .15s ease-in-out
-  -ms-transition: border .15s ease-in-out
   transition: border .15s ease-in-out
   &:focus
     //border: 2px solid $grayAccent3-4
@@ -51,6 +50,9 @@
   display: flex
   align-items: center
   width: 100%
+
+
+
 
 .contentWrapper
   display: flex
@@ -81,6 +83,32 @@
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover
     background: $grayAccent4
+
+.shareLink
+  font-size: 14px
+  max-width: 500px
+  overflow-x: auto
+  overflow-y: hidden
+  padding-bottom: 10px
+  /* width */
+  &::-webkit-scrollbar
+    height: 8px
+
+  /* Track */
+  &::-webkit-scrollbar-track
+    background: $grayAccent3
+    border-radius: 1000px
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb
+    background: $grayAccent3-4
+    border-radius: 1000px
+
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover
+    background: $grayAccent4
+
 
 .resultWrapper
   padding: 10px

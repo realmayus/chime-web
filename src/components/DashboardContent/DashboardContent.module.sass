@@ -9,33 +9,58 @@
   padding-left: 60px
   padding-right: 60px
 
+.sharedViewBody
+  background-color: $grayAccent2
+  width: calc(100vw - 120px)
+  height: calc(100vh - 60px)
+  position: absolute
+  padding-left: 60px
+  padding-right: 60px
 
 .songList
   height: calc(100vh - 270px)
   width: calc(100vw - 420px)
   overflow-y: auto
-
   /* width */
   &::-webkit-scrollbar
     width: 8px
-
-
   /* Track */
   &::-webkit-scrollbar-track
     background: $grayAccent3
     border-radius: 1000px
-
-
-
   /* Handle */
   &::-webkit-scrollbar-thumb
     background: $grayAccent3-4
     border-radius: 1000px
-
-
   /* Handle on hover */
   &::-webkit-scrollbar-thumb:hover
     background: $grayAccent4
+
+.songListSharedView
+  left: 0
+  right: 0
+  margin-left: auto
+  margin-right: auto
+  position: absolute
+  height: calc(100vh - 320px)
+  width: calc(100vw - 320px)
+  overflow-y: auto
+  /* width */
+  &::-webkit-scrollbar
+    width: 8px
+  /* Track */
+  &::-webkit-scrollbar-track
+    background: $grayAccent3
+    border-radius: 1000px
+  /* Handle */
+  &::-webkit-scrollbar-thumb
+    background: $grayAccent3-4
+    border-radius: 1000px
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover
+    background: $grayAccent4
+
+
 
 .actionContainer
   margin-bottom: 20px
@@ -54,11 +79,35 @@
   display: flex
   align-items: center
 
+.titleWrapperSharedView
+  padding-top: 40px
+  padding-bottom: 20px
+  &:first-child
+    display: block
+
 .title
   font-weight: 800
   font-size: 44px
   line-height: 58px
   color: #ffffff
+  text-overflow: ellipsis //clip the text with … if too long
+  overflow: hidden //clip the text with … if too long
+  max-width: calc(100vw - 560px) //clip the text with … if too long
+  white-space: nowrap //clip the text with … if too long
+
+
+
+.subtitle
+  font-weight: 600
+  font-size: 24px
+  line-height: 58px
+  color: $grayAccent5
+  text-overflow: ellipsis //clip the text with … if too long
+  overflow: hidden //clip the text with … if too long
+  max-width: calc(100vw - 560px) //clip the text with … if too long
+  white-space: nowrap //clip the text with … if too long
+  margin: 0
+
 
 .editIcon
   font-size: 18px
@@ -68,9 +117,7 @@
   -webkit-transition: color .15s ease-in-out
   -moz-transition: color .15s ease-in-out
   -o-transition: color .15s ease-in-out
-  -ms-transition: color .15s ease-in-out
   transition: color .15s ease-in-out
-
   &:hover
     color: #ffffff
 
@@ -89,5 +136,3 @@
 .errorIcon
   font-size: 20px
   margin-right: 20px
-
-.errorText

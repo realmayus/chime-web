@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar/Navbar"
 import Main from "./Main"
 import {connect} from "react-redux";
 import {useLocalStorage} from "./util";
-import {setAvatarURL, setData, setLoggedIn, setUsername} from "./redux/actions";
+import {setAvatarURL, setData, setDiscordID, setLoggedIn, setUsername} from "./redux/actions";
 import {BACKEND_URL} from "./constants";
 import {Link, useLocation} from "react-router-dom";
 import Footer from "./components/Footer/Footer";
@@ -33,6 +33,7 @@ export default connect(mapStateToProps)(function App(props) {
             fetch(BACKEND_URL + "/getProfile?token=" + discordToken).then(res => res.json()).then(res => {
                 props.dispatch(setAvatarURL(res.avatar_url))
                 props.dispatch(setUsername(res.user_name))
+                props.dispatch(setDiscordID(res.user_id))
                 props.dispatch(setData(res.data))
             })
         }
