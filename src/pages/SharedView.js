@@ -34,7 +34,7 @@ export default function SharedView() {
     const getDataFromB64 = () => {
         console.log(decodeURIComponent(sharecode))
 
-        let decodedData = atob(decodeURIComponent(sharecode));
+        let decodedData = decodeURIComponent(escape(atob(decodeURIComponent(sharecode))));
         decodedData = decodedData.split(":")
         return {
             userID: decodedData[0],

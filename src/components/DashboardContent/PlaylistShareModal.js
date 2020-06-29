@@ -45,9 +45,9 @@ export default connect(mapStateToProps)(function PlaylistCloneModal(props) {
                 <div className={styles.form} style={{marginBottom: 20}}>
                     <p>Use this link to share this playlist, click to copy:</p>
                     <code onClick={() => {
-                        copyTextToClipboard(FRONTEND_URL + "/view/" + encodeURIComponent(window.btoa(props.discordID + ":" + props.playlistID + ":" + props.name + ":" + props.username)));
+                        copyTextToClipboard(FRONTEND_URL + "/view/" + encodeURIComponent(window.btoa(unescape(encodeURIComponent(props.discordID + ":" + props.playlistID + ":" + props.name + ":" + props.username)))));
                         setHasCopied(true);
-                    }} className={styles.shareLink}>{FRONTEND_URL + "/view/" + encodeURIComponent(window.btoa(props.discordID + ":" + props.playlistID + ":" + props.name + ":" + props.username))}</code>
+                    }} className={styles.shareLink}>{FRONTEND_URL + "/view/" + encodeURIComponent(window.btoa(unescape(encodeURIComponent(props.discordID + ":" + props.playlistID + ":" + props.name + ":" + props.username))))}</code>
 
                 </div>
                 {hasCopied &&
