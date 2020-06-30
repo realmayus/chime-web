@@ -8,6 +8,7 @@ import {SpinnerBig} from "../components/Minor/Spinner";
 import {useParams} from "react-router-dom";
 import TrackItemRaw from "../components/Minor/TrackItemRaw";
 import PlaylistCloneModal from "../components/DashboardContent/PlaylistCloneModal";
+import { Base64 } from 'js-base64';
 
 
 export default function SharedView() {
@@ -34,7 +35,7 @@ export default function SharedView() {
     const getDataFromB64 = () => {
         console.log(decodeURIComponent(sharecode))
 
-        let decodedData = decodeURIComponent(escape(atob(decodeURIComponent(sharecode))));
+        let decodedData = Base64.decode(sharecode);
         decodedData = decodedData.split(":")
         return {
             userID: decodedData[0],
