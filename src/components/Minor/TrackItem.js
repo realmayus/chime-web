@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBars, faLink, faTrash} from "@fortawesome/free-solid-svg-icons"
 import { useDrag, useDrop } from 'react-dnd'
 import { ItemTypes } from '../../assets/ItemTypes'
-import {get_pretty_time_delta} from "../../util"
+import {getPrettyTimeDelta} from "../../util"
 
 
 export default function TrackItem(props) {
@@ -40,7 +40,7 @@ export default function TrackItem(props) {
             <span className={styles.title}>{props.title}</span>
             <span className={styles.artist}>{props.artist}</span>
             <span className={styles.dot}>•</span>
-            <span className={styles.duration}>{get_pretty_time_delta(props.duration)}</span>
+            <span className={styles.duration}>{getPrettyTimeDelta(props.duration)}</span>
             <FontAwesomeIcon className={styles.icon} icon={faLink} onClick={() => window.location.href = props.url}/>
             <FontAwesomeIcon className={styles.icon} icon={faTrash} onClick={() => props.removeClickHandler(props.id)}/>
         </div>
