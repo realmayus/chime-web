@@ -33,7 +33,7 @@ export default withRouter(connect(mapStateToProps)(function Sidebar(props) {
         <div className={styles.sideBar}>
             <ul className={styles.list}>
                 <li className={styles.category + " " + styles.listItem}>PLAYLISTS <div onClick={() => setShowPlaylistAddModal(true)} className={styles.addIconWrapper}><FontAwesomeIcon className={styles.addIcon} icon={faPlus}/></div></li>
-                {props.data !== null && props.data !== undefined && props.data.playlists.map((item, i) => (
+                {props.data != null && props.data.playlists.map((item, i) => (
                     <Link key={i} to={"/app/p/" + item.ref} className={styles.a}><li className={styles.listItem + (currentlySelected(item.ref) ? " " + styles.listItemSelected : "")}>{item.name}</li></Link>
                 ))}
             </ul>

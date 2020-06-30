@@ -65,7 +65,6 @@ export default connect(mapStateToProps)(function PlaylistCloneModal(props) {
                 } else {
                     setCurrentlyLoading(false)
                     setError(res["error"] || "Couldn't clone playlist, please check log.")
-                    console.log(res)
                 }
             }).catch(err => {
             setCurrentlyLoading(false)

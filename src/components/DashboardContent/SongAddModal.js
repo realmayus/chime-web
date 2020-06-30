@@ -7,7 +7,7 @@ import IconPillButton from "../Minor/IconPillButton"
 import {BACKEND_URL} from "../../constants"
 import {connect} from "react-redux"
 import {SpinnerMedium} from "../Minor/Spinner"
-import {get_pretty_time_delta, useLocalStorage} from "../../util";
+import {getPrettyTimeDelta, useLocalStorage} from "../../util";
 
 const mapStateToProps = (state) => {
     return {
@@ -133,7 +133,7 @@ export default connect(mapStateToProps)(function SongAddModal(props) {
                                         <img src={`https://img.youtube.com/vi/${encodeURIComponent(item.info.identifier)}/0.jpg`} alt="thumbnail"
                                              className={styles.resultThumbnail}/>
                                         <h3 className={styles.resultTitle}>{item.info.title}</h3>
-                                        <p>{get_pretty_time_delta(item.info.length)} • {item.info.author}</p>
+                                        <p>{getPrettyTimeDelta(item.info.length)} • {item.info.author}</p>
                                     </div>
                                 </div>
                             ))}

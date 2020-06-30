@@ -9,7 +9,7 @@ export function uuidv4() {
 }
 
 
-export function compare_arrays(array1, array2) {
+export function compareArrays(array1, array2) {
     return (array1.length === array2.length) && array1.every(function(element, index) {
         return element === array2[index]
     })
@@ -31,41 +31,14 @@ const shortEnglishHumanizer = humanizeDuration.humanizer({
     },
 })
 
-export function get_pretty_time_delta(millis) {
+export function getPrettyTimeDelta(millis) {
     return shortEnglishHumanizer(millis, { delimiter: " ", spacer: "" })
 }
 
-
-/*
-    This function generates a base64 data string that is compatible with Lavaplayer.
-    It's required so that chime can "reconstruct" the track without having to look it up by its URL which is
-    time-consuming.
- */
-// export function encodeTrackToBase64(track) {
-//     let dataBuffer = new DataBuffer()
-//     dataBuffer.write(2)
-//     dataBuffer.writeUTF8(removeNonAscii(track.title))
-//     dataBuffer.writeUTF8(removeNonAscii(track.artist))
-//     dataBuffer.writeLong(track.duration)
-//     dataBuffer.writeUTF8(track.videoID)
-//     dataBuffer.writeBoolean(false)
-//     dataBuffer.writeBoolean(true)
-//     dataBuffer.writeUTF8(track.url)
-//     dataBuffer.writeUTF8("youtube")
-//     dataBuffer.writeLong(0)
-//
-//     return dataBuffer.getLavaplayerBase64()
-// }
-
 export function strip(str) {
-    if(str !== undefined) {
+    if(str != null) {
         return str.replace(/^\s+|\s+$/g, '')
     }
-}
-
-export function removeNonAscii(str) {
-    // eslint-disable-next-line no-control-regex
-    return str.replace(/[^\x00-\x7F]/g, "");
 }
 
 export function useLocalStorage(key, initialValue) {

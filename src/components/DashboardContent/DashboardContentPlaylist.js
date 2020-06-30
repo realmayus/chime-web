@@ -4,7 +4,7 @@ import TrackItem from "../Minor/TrackItem"
 import IconPillButton from "../Minor/IconPillButton"
 import {faCheck, faClone, faExclamationTriangle, faPlus, faShare} from "@fortawesome/free-solid-svg-icons"
 import update from 'immutability-helper'
-import {compare_arrays, useLocalStorage, uuidv4} from "../../util"
+import {compareArrays, useLocalStorage, uuidv4} from "../../util"
 import {useDrop} from "react-dnd"
 import {ItemTypes} from "../../assets/ItemTypes"
 import SongAddModal from "./SongAddModal"
@@ -119,7 +119,7 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
 
     useEffect(() => {
         if(props.data != null && props.data.hasOwnProperty("playlists")) {
-            if(!compare_arrays(cards, cardsInitial)) {
+            if(!compareArrays(cards, cardsInitial)) {
                 setChangesMade(true)
                 window.onbeforeunload = () => true //show confirm dialog when user wants to close/reload tab
             } else {
