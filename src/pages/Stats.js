@@ -65,7 +65,7 @@ export default function Stats() {
 
                 <div className={styles.sectionContent}>
                     <p className={styles.sectionText}>
-                        The amount of guilds which are awesome because they have invited chime</p>
+                        The amount of guilds which are awesome because they have invited chime.</p>
                     <div className={styles.graphWrapper}>
                         { datasets.some(item => item.key === "server_amount")
                             && <Line data={datasets.find(item => item.key === "server_amount")} options={{
@@ -224,7 +224,7 @@ export default function Stats() {
                 <h1 className={styles.sectionHeadline}>Latency</h1>
                 <div className={styles.sectionContent}>
                     <p className={styles.sectionText}>
-                        The latency (or ping) of chime to discord's APIs</p>
+                        The latency (or ping) from chime to discord's APIs.</p>
                     <div className={styles.graphWrapper}>
                         { datasets.some(item => item.key === "latency") &&
                         <Line data={datasets.find(item => item.key === "latency")} options={{
