@@ -100,6 +100,50 @@ export default function Stats() {
                 </div>
 
             </div>
+
+            <div className={styles.section}>
+                <h1 className={styles.sectionHeadline}>Listening servers</h1>
+
+                <div className={styles.sectionContent}>
+                    <p className={styles.sectionText}>
+                        The amount of servers which are/were listening to chime at the given time.</p>
+                    <div className={styles.graphWrapper}>
+                        { datasets.some(item => item.key === "servers_listening")
+                        && <Line data={datasets.find(item => item.key === "servers_listening")} options={{
+                            maintainAspectRatio: false, scales: {
+                                xAxes: [{
+                                    type: 'time',
+                                    time: {
+                                        parser: 'MM/DD/YYYY HH:mm',
+                                        // round: 'day'
+                                        tooltipFormat: 'll HH:mm',
+                                        unit: 'minute',
+                                        unitStepSize: 3
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        min: 0,
+                                        stepSize: 1
+                                    },
+
+                                }]
+                            }
+                        }}
+
+
+                        />
+
+                        }
+                        { loading &&
+                        <SpinnerBig color={"dark"}/>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+
             <div className={styles.section}>
                 <h1 className={styles.sectionHeadline}>CPU usage</h1>
                 <div className={styles.sectionContent}>
