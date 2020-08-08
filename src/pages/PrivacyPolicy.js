@@ -1,10 +1,17 @@
-import React from "react"
+import React, {useRef, useState} from "react"
 import styles from "./StaticContent.module.sass"
+import EmailQuiz from "../components/Minor/EmailQuiz";
 
 
 export const version = "1.0.2";
 
+
+
+
 export default function PrivacyPolicy() {
+
+
+
     return(
         <div className={styles.contentWrapper}>
             <h1>Privacy Policy for chime</h1>
@@ -84,7 +91,8 @@ export default function PrivacyPolicy() {
 
             <h2>Contact</h2>
             <p>If you have any questions or inquiries, please do not hesitate to contact me at:</p>
-            <a href={"mailto:contact@realmayus.xyz?subject=" + encodeURIComponent("Question regarding chime's privacy policy")}>contact@realmayus.xyz</a>
+            <EmailQuiz/>
+
         </div>
     )
 }

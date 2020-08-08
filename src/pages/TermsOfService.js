@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./StaticContent.module.sass"
+import EmailQuiz from "../components/Minor/EmailQuiz";
 
 export const version = "1.0.0";
 
@@ -24,7 +25,7 @@ export default function TermsOfService() {
             </ul>
             <h3>Contact</h3>
             <p>In case of questions, please do not hesitate to contact me:</p>
-            <a href={"mailto:contact@realmayus.xyz?subject=" + encodeURIComponent("Question regarding chime's terms of service")}>contact@realmayus.xyz</a>
+            <EmailQuiz/>
             <p className={styles.centered}>Last change: 06/27/2020</p>
             <small>These Terms of service were inspired by Rythm Music Bot's ToS <a href={"https://rythmbot.co/tos"}>here.</a> </small>
         </div>

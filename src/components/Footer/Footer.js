@@ -5,8 +5,6 @@ import {Link} from "react-router-dom";
 export default function Footer() {
     return(
         <footer className={styles.footer}>
-            <Link to={"/stats"} className={styles.footerLink}>Stats</Link>
-            <span className={styles.dot}>•</span>
             <Link to={"/privacy"} className={styles.footerLink}>Privacy</Link>
             <span className={styles.dot}>•</span>
             <Link to={"/terms"} className={styles.footerLink}>Terms</Link>
