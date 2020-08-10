@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {useLocalStorage} from "./util";
 import {setAvatarURL, setData, setDiscordID, setLoggedIn, setUsername} from "./redux/actions";
 import {BACKEND_URL} from "./constants";
-import {Link, useLocation} from "react-router-dom";
+import {Link, useHistory, useLocation} from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import InfoBanner from "./components/Minor/InfoBanner";
 import AnimatedComp from "./components/Minor/AnimatedComp";
@@ -25,12 +25,18 @@ export default connect(mapStateToProps)(function App(props) {
     const [tosVersionSaved, setTosVersion] = useLocalStorage('tosVersion', false);
     const [privacyVersionSaved, setPrivacyVersion] = useLocalStorage('privacyVersion', false);
     const location = useLocation();
+    const history = useHistory();
+
 
     useEffect(() => {
         if(discordToken !== "null" && discordToken != null) {
             props.dispatch(setLoggedIn(true))
-            // props.dispatch(setAccessToken(discordToken))
             fetch(BACKEND_URL + "/getProfile?token=" + discordToken).then(res => res.json()).then(res => {
+                if(res.errorCode === "discordError") {  // couldn't log in to API (the oauth token likely has expired
+                    props.dispatch(setLoggedIn(false));
+                    history.push("/oauth/login");  //ask user to re-login
+                    return;
+                }
                 props.dispatch(setAvatarURL(res.avatar_url))
                 props.dispatch(setUsername(res.user_name))
                 props.dispatch(setDiscordID(res.user_id))
