@@ -33,6 +33,7 @@ export default connect(mapStateToProps)(function App(props) {
             props.dispatch(setLoggedIn(true))
             fetch(BACKEND_URL + "/getProfile?token=" + discordToken).then(res => res.json()).then(res => {
                 if(res.errorCode === "discordError") {  // couldn't log in to API (the oauth token likely has expired
+                    console.log(res.errorCode);
                     props.dispatch(setLoggedIn(false));
                     history.push("/oauth/login");  //ask user to re-login
                     return;

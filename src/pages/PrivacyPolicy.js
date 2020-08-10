@@ -1,16 +1,11 @@
-import React, {useRef, useState} from "react"
+import React from "react"
 import styles from "./StaticContent.module.sass"
 import EmailQuiz from "../components/Minor/EmailQuiz";
 
 
 export const version = "1.0.2";
 
-
-
-
 export default function PrivacyPolicy() {
-
-
 
     return(
         <div className={styles.contentWrapper}>
