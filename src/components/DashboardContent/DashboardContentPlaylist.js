@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import styles from "./DashboardContent.module.sass"
 import TrackItem from "../Minor/TrackItem"
 import IconPillButton from "../Minor/IconPillButton"
@@ -157,20 +157,20 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
                 },
                 body: JSON.stringify({cards})
             }).then(res => res.json()).then(res => {
-                if(res.hasOwnProperty("status") && res.status === "OK") {
-                    setCardsInitial(cards)
-                    setChangesMade(false)
-                    setCurrentlySaving(false)
-                } else {
-                    alert("Couldn't set playlist. Please see log.")
-                    setCurrentlySaving(false)
-                    console.log(res)
-                }
-            }).catch(err => {
+            if(res.hasOwnProperty("status") && res.status === "OK") {
+                setCardsInitial(cards)
+                setChangesMade(false)
+                setCurrentlySaving(false)
+            } else {
                 alert("Couldn't set playlist. Please see log.")
                 setCurrentlySaving(false)
-                console.log(err)
-            })
+                console.log(res)
+            }
+        }).catch(err => {
+            alert("Couldn't set playlist. Please see log.")
+            setCurrentlySaving(false)
+            console.log(err)
+        })
     }
 
     if(getPlaylist() == null) {
@@ -180,39 +180,39 @@ export default connect(mapStateToProps)(function DashboardContentPlaylist(props)
 
     return(
         <div>
-                <div>
-                    {error === ""
-                        ? <div>
-                            <div className={styles.titleWrapper}><span
-                                className={styles.title}>{getPlaylist().name}</span><FontAwesomeIcon
-                                onClick={() => setShowEditModal(true)} className={styles.editIcon} icon={faPencilAlt}/></div>
-                                <div className={styles.actionContainer}>
-                                    <IconPillButton icon={faPlus} text="Add" onclick={() => setShowAddModal(true)}/>
-                                    <IconPillButton icon={faClone} text="Clone" onclick={() => setShowCloneModal(true)}/>
-                                    <IconPillButton icon={faShare} text="Share" onclick={() => setShowShareModal(true)}/>
-                                    {changesMade &&
-                                    <IconPillButton inverted={true} icon={faCheck} text="Save Changes" onclick={saveChanges}
-                                                    loading={currentlySaving}/>
-                                    }
-                                </div>
-                                {currentlyLoading &&
-                                    <div className={styles.spinnerWrapper}>
-                                    <SpinnerBig/>
-                                    </div>
-                                }
-                                <div className={styles.songList} ref={drop}>
-                                {cards.map((card, i) => renderCard(card, i))}
+            <div>
+                {error === ""
+                    ? <div>
+                        <div className={styles.titleWrapper}><span
+                            className={styles.title}>{getPlaylist().name}</span><FontAwesomeIcon
+                            onClick={() => setShowEditModal(true)} className={styles.editIcon} icon={faPencilAlt}/></div>
+                        <div className={styles.actionContainer}>
+                            <IconPillButton icon={faPlus} text="Add" onclick={() => setShowAddModal(true)}/>
+                            <IconPillButton icon={faClone} text="Clone" onclick={() => setShowCloneModal(true)}/>
+                            <IconPillButton icon={faShare} text="Share" onclick={() => setShowShareModal(true)}/>
+                            {changesMade &&
+                            <IconPillButton inverted={true} icon={faCheck} text="Save Changes" onclick={saveChanges}
+                                            loading={currentlySaving}/>
+                            }
+                        </div>
+                        {currentlyLoading &&
+                        <div className={styles.spinnerWrapper}>
+                            <SpinnerBig/>
+                        </div>
+                        }
+                        <div className={styles.songList} ref={drop}>
+                            {cards.map((card, i) => renderCard(card, i))}
 
-                            </div>
-                          </div>
-                        : <div className={styles.errorWrapper}>
-                              <FontAwesomeIcon className={styles.errorIcon} icon={faExclamationTriangle}/>
-                              <p className={styles.errorText}>An unknown error occurred. If this keeps happening, please ask for help on our support discord.</p>
-                              <p className={styles.errorCode}>{error}</p>
-                          </div>
-                    }
+                        </div>
+                    </div>
+                    : <div className={styles.errorWrapper}>
+                        <FontAwesomeIcon className={styles.errorIcon} icon={faExclamationTriangle}/>
+                        <p className={styles.errorText}>An unknown error occurred. If this keeps happening, please ask for help on our support discord.</p>
+                        <p className={styles.errorCode}>{error}</p>
+                    </div>
+                }
 
-                </div>
+            </div>
             <SongAddModal onSongSelect={addSong} showModal={showAddModal} onClose={() => setShowAddModal(false)}/>
             <PlaylistEditModal showModal={showEditModal} onClose={() => setShowEditModal(false)} name={getPlaylist().name} playlistID={getPlaylist().ref}/>
             <PlaylistCloneModal showModal={showCloneModal} onClose={() => setShowCloneModal(false)} name={getPlaylist().name} playlistID={getPlaylist().ref}/>

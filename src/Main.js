@@ -1,4 +1,4 @@
-import React, {Suspense} from "react"
+import React, {Suspense, useEffect, useState} from "react"
 import {Redirect, Route, Switch} from "react-router-dom"
 import Home from "./pages/Home"
 import {CLIENT_ID, INVITE_URL, SERVER_INVITE_URL} from "./constants"
@@ -14,19 +14,33 @@ import {useLocalStorage} from "./util";
 import {useHistory} from "react-router-dom";
 import TermsOfService from "./pages/TermsOfService";
 import SharedView from "./pages/SharedView";
+import AnimatedComp from "./components/Minor/AnimatedComp";
 
 
 export default connect() (function Main(props) {
     const [, setDiscordToken] = useLocalStorage('discordToken', null);
+    const [MOTD, setMOTD] = useState("");
     const history = useHistory();
 
+    const getMOTD = () => {
+        let availableMsgs = [
+            "The only music bot you need",
+            "The next-gen music bot for discord"
+        ]
+        return availableMsgs[Math.floor(Math.random() * availableMsgs.length)];
+    }
+
+
+    useEffect(() => {
+        setMOTD(getMOTD());
+    }, [])
     return(
         <main>
             <Suspense fallback={<p>Loading…</p>}>
                 <Switch>
 
                     {/*Static sites*/}
-                    <Route exact path="/" component={AnimatedPage(Home)}/>
+                    <Route exact path="/" render={() => <AnimatedComp><Home motd={MOTD}/></AnimatedComp>}/>
                     <Route exact path="/features" component={AnimatedPage(Features)}/>
                     <Route exact path="/stats" component={AnimatedPage(Stats)}/>
 

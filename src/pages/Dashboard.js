@@ -7,6 +7,7 @@ import {HTML5Backend} from 'react-dnd-html5-backend'
 import DashboardPlaceholder from "../components/DashboardContent/DashboardPlaceholder"
 import AnimatedPage from "../components/Minor/AnimatedPage";
 import Sidebar from "../components/DashboardSidebar/Sidebar";
+import DashboardContentGuild from "../components/DashboardContent/DashboardContentGuild";
 
 const mapStateToProps = (state) => {
     return {
@@ -27,9 +28,7 @@ export default connect(mapStateToProps)(function Dashboard(props) {
                                 return <div/>
                             }}/>
                             <Route exact path="/app/p/:playlistID" component={AnimatedPage(DashboardContentPlaylist, '#323232')}/>
-                            <Route exact path="/app/g/:guildID" component={() => {
-                                return <div/>
-                            }}/>
+                            <Route exact path="/app/g/:guildID" component={AnimatedPage(DashboardContentGuild, '#323232')}/>
                         </Switch>
                     </div>
                 </DashboardPlaceholder>

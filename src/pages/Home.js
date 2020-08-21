@@ -4,14 +4,14 @@ import {INVITE_URL, SERVER_INVITE_URL} from "../constants"
 import {useHistory} from "react-router-dom";
 import StyledLink from "../components/Minor/StyledLink";
 
-export default function Home() {
+export default function Home(props) {
     let history = useHistory()
 
     return(
         <div>
             <div className={styles.banner}>
                 <div className={styles.bannerWrapper}>
-                    <h1 className={styles.bannerHeading}>The only music bot you need</h1>
+                    <h1 className={styles.bannerHeading}>{props.motd}</h1>
                     <div className={styles.buttonWrapper}>
                         <button onClick={() => {
                             history.push("/features")

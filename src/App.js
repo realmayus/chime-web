@@ -77,6 +77,8 @@ export default connect(mapStateToProps)(function App(props) {
                 </AnimatedComp>
             }
             <Navbar/>
+
+
             <Main/>
             { location.pathname === "/" &&
                 <Footer/>

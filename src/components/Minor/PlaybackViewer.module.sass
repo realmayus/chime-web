@@ -1,0 +1,79 @@
+@import "../../assets/main"
+
+
+.wrapper
+  background-color: $grayAccent3
+  border-radius: 10px
+  position: absolute
+  right: 100px
+  width: 400px
+  height: 220px
+  color: #ffffff
+
+.songInfoWrapper
+  display: flex
+  padding: 25px
+
+
+.songInfoTextWrapper
+  margin-left: 25px
+.cover
+  height: 80px
+  width: 80px
+  object-fit: cover
+  background-repeat: no-repeat
+  background-position: 50% 50%
+
+.headline
+  letter-spacing: 0.095em
+  font-weight: 800
+  font-size: 12px
+  color: $grayAccent4
+  padding: 0
+  margin: 0
+
+.title
+  font-weight: bold
+  font-size: 20px
+  padding-top: 5px
+  padding-bottom: 6px
+  margin: 0
+
+.artist
+  padding: 0
+  margin: 0
+
+.progressWrapper
+  display: flex
+  align-items: center
+  width: 100%
+.progress
+  height: 3px
+  background-color: $grayAccent5-6
+
+.progressButton
+  height: 10px
+  width: 10px
+  background-color: $grayAccent5-6
+  border-radius: 100px
+  &:hover
+    background-color: $grayAccent6
+
+.mediaButtons
+  padding-top: 20px
+  padding-bottom: 20px
+  color: #ffffff
+  display: flex
+  font-size: 30px
+  align-items: center
+  justify-content: center
+
+.mediaButton
+  cursor: pointer
+  &:not(:last-child)
+    padding-right: 30px
+  &:nth-child(2)
+    font-size: 35px
+  transition: 0.2s all ease-in-out
+  &:hover
+    color: $grayAccent5-6

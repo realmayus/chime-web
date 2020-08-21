@@ -36,6 +36,9 @@ export default withRouter(connect(mapStateToProps)(function Sidebar(props) {
                 {props.data != null && props.data.playlists.map((item, i) => (
                     <Link key={i} to={"/app/p/" + item.ref} className={styles.a}><li className={styles.listItem + (currentlySelected(item.ref) ? " " + styles.listItemSelected : "")}>{item.name}</li></Link>
                 ))}
+                <li className={styles.category + " " + styles.listItem}>SERVERS</li>
+                <Link to={"/app/g/asd"} className={styles.a}><li className={styles.listItem + (true ? " " + styles.listItemSelected : "")}>chime lounge</li></Link>
+
             </ul>
             <PlaylistAddModal showModal={showPlaylistAddModal} onClose={() => setShowPlaylistAddModal(false)}/>
         </div>
